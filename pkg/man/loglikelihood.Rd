@@ -16,15 +16,17 @@
 to optimise. If your data is standardised (having general mean equal to zero and general variance equal one) often the \code{loglikelihood} function is 
 maximised over values between -5 and 5.
 The \code{transformed.par} is a vector of transformed model parameters having length 5 up to 7 depending on the chosen model.
-The \code{transformed.par} is $(\log \sigma^2,\log \sigma_\eta^2,\log sigma_\theta^2,\mu,\mathrm{logit}p,\mathrm{logit}q)$ a vector of length 6 for \code{effect.family="gaussian"} 
-and \code{var.select=TRUE}, and is $(\log \sigma^2,\log \sigma_\eta^2,\log sigma_{\theta_L}^2,\log sigma_{\theta_R}^2,\mu,\mathrm{logit}p,\mathrm{logit}q)$ 
-a vector of length 7 for \code{effect.family="alaplace"}. When \code{var.select=FALSE} the parameter is dropped yielding a vector of length 5 for \code{effect.family="gaussian"}  and a vector of 
-length 6 for \code{effect.family="alaplace"}. The model parameters has natural interpretations, $\sigma^2$ is the variance of measurement error, 
-$\sigma^2_\eta$ is the variance of between-individual error, $\sigma^2\theta$ is the variance of disappearing random component 
-which is decomposed to $\sigma^2_{\theta_L}, \sigma^2_{\theta_R}$  the left and the right tail variances if the asymmetric Laplace. $\mu$ is the general mean, $p$ is the proportion of active variable-clusters, and
+The \code{transformed.par} is (log sigma^2,log sigma_eta^2, log sigma_theta^2,mu, logit p,logit q ) a vector of length 6 for \code{effect.family="gaussian"} 
+and \code{var.select=TRUE}, and is (log sigma^2,log sigma_eta^2,log sigma_theta_L^2,log sigma_theta_R^2,mu, logit p, logitq) 
+a vector of length 7 for \code{effect.family="alaplace"}. 
+
+When \code{var.select=FALSE} the parameter is dropped yielding a vector of length 5 for \code{effect.family="gaussian"}  and a vector of 
+length 6 for \code{effect.family="alaplace"}. The model parameters has natural interpretations, sigma^2 is the variance of measurement error; 
+sigma^2_eta is the variance of between-individual error; sigma^2theta is the variance of disappearing random component 
+which is decomposed to sigma^2_theta_L, sigma^2_theta_R  the left and the right tail variances if the asymmetric Laplace; mu is the general mean; p is the proportion of active variable-clusters, and
 $q$ is the proportion of active variables. For more details see the website of the package. }
 \seealso{
-		\link{meancss}, \link{bclust}, 
+	\link{bclust},\link{meancss} 
 			}
 \examples{
 data(gaelle)

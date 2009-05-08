@@ -3,15 +3,10 @@
 \title{Bayesian agglomerative clustering for high dimensional data with variable selection.}
 \description{The function clusters data saved in a matrix using an additive linear model with disappearing random effects. 
 The model has built-in spike-and-slab components which quantifies important variables for clustering.}
-
-(x,model.par,x.id=1:nrow(x),effect.family="gaussian",
-var.select=TRUE,labels=NULL)
-
-\usage{bclust(x,model.par,x.id=1:nrow(x),effect.family="gaussian",
-var.select=TRUE,labels=NULL)	}
+\usage{bclust(x,transformed.par,x.id=1:nrow(x),effect.family="gaussian",var.select=TRUE,labels=NULL)	}
  \arguments{
  \item{x}{A numeric matrix of clustering indiviuals in rows and variables in columns.}
- \item{model.par}{Model parameters in a vector. The length of the vector depends on the chosen model and the availability of variable selection.}
+ \item{transformed.par}{The transformed model parameters in a vector. The length of the vector depends on the chosen model and the availability of variable selection.}
  \item{x.id}{A vector consisting of positive integer elements having the same length as the number of rows of \code{x}, identifying replicates of a type.}
  \item{effect.family}{Distribution family of the disappearing random components. Choices are "gaussian" or "alaplace" allowing Gaussian or asymmetric Laplace family, respectively. } 
  \item{var.select}{A logcial value, TRUE for fitting models that define spike-and-slab in variable level.}
@@ -32,7 +27,7 @@ R using your operational system command line.
 	\item{labels}{The labels associated to each }
 	}
 \seealso{
-		\link{likelihood}, \link{meancss}
+		\link{loglikelihood}, \link{meancss}
 			}
 \examples{
 data(gaelle)

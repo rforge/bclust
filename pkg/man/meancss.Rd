@@ -1,8 +1,8 @@
- \name{meancss}
-\alias{loglikelihood}
+\name{meancss}
+\alias{meancss}
 \title{computes the model log likelihood}
 \description{The function is useful for deriving the maximum likelihood estimates of the model parameters.}
-\usage{meancss<-function(x,x.id=1:nrow(x))}
+\usage{meancss(x,x.id=1:nrow(x))}
  \arguments{
  \item{x}{The data matrix, clustering individuals in rows, variables in columns.}
  \item{x.id}{A vector of positive integers showing replication of types. The replicates of the same type have the same integers. Apriori considered that data are unreplicated.}

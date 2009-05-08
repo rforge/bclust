@@ -1,6 +1,5 @@
-\name{bclust-package}
-\alias{bclust-package}
-\alias{bclustpkg}
+\name{bclust}
+\alias{bclust}
 \docType{package}
 \title{
 The package does Bayesian agglomerative clustering with variable selection using spike and slab models in two levels useful for clustering continuous high-dimensional data.
@@ -19,13 +18,11 @@ LazyLoad: \tab yes\cr
 }
 bclust, likelihood, bclassify
 }
-\author{Vahid PARTOVI NIA and Anthony C. DAVISON
-Maintainer: Vahid PARTOVI NIA <bclust@probstat.ch>
+\author{Vahid PARTOVI NIA and Anthony C. DAVISON, Maintainer: Vahid PARTOVI NIA <bclust@probstat.ch>
 }
 \references{
 Fast High-Dimensional Bayesian Classification and Clustering
 }
-\keyword{agglomerative clustering, Bayesian clustering, spike-and-slab models, Bayesian classification}
 \examples{
 data(gaelle)
 plot(bclust(gaelle,transformed.par=c(-1.8,-1.7,0.2,0.2,0.6,0))) #transformed.par obtained by maximum likelihood
