@@ -1,6 +1,6 @@
 \name{meancss}
 \alias{meancss}
-\title{computes the model log likelihood}
+\title{computes data statistics necessary for evaluation of the model log likelihood}
 \description{The function is useful for deriving the maximum likelihood estimates of the model parameters.}
 \usage{meancss(x,x.id=1:nrow(x))}
  \arguments{

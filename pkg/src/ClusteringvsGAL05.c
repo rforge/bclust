@@ -714,10 +714,10 @@ counter=0;
 			}
 		sumys[s]=sum;
 		bL[s]=sumys[s]/sigma2+1/(typeno*tauthetaL);
-		dL[s]=-1/sqrt(tau2eta/typeno);
+		dL[s]=-1/sqrt(tau2eta*typeno);
 		sumrepno+=repno[s];
 		bR[s]=sumys[s]/sigma2-1/(typeno*tauthetaR);
-		dR[s]=1/sqrt(tau2eta/typeno);
+		dR[s]=1/sqrt(tau2eta*typeno);
 	}	
 cL=(mu-tau2eta/(typeno*tauthetaL))/sqrt(tau2eta/typeno);
 cR=(-mu-tau2eta/(typeno*tauthetaR))/sqrt(tau2eta/typeno);
