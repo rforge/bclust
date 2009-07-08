@@ -585,9 +585,10 @@ if (is.null(ylab)) {image.rmargin<-0.2} else {image.rmargin<-ylab.mar} #right ma
 
             bclust.dendro <- as.dendrogram(x)
            rowInd <- order.dendrogram(bclust.dendro)
-            x.data<-x.data[rowInd,] 
+            varimp.order<-order(varimp,decreasing=TRUE)
+            x.data<-x.data[rowInd,varimp.order] 
             ylab<-ylab[rowInd]
-            xlab<-xlab[order(varimp,decreasing=TRUE)]
+            xlab<-xlab[varimp.order]
             varimp<-sort(varimp,decreasing=TRUE)
             varimp<-logbfcoder(varimp)
 # plot 1
@@ -725,8 +726,10 @@ if (is.null(ylab)) {image.rmargin<-0.2} else {image.rmargin<-ylab.mar} #right ma
 
             bclust.dendro <- as.dendrogram(x)
            rowInd <- order.dendrogram(bclust.dendro)
-            x.data<-x$data
-            xlab<-xlab[order(varimp,decreasing=TRUE)]
+           varimp.order<-order(varimp,decreasing=TRUE)
+
+            x.data<-x$data[,varimp.order]
+            xlab<-xlab[varimp.order]
             varimp<-sort(varimp,decreasing=TRUE)
             varimp<-logbfcoder(varimp)
 # plot 1
