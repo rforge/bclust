@@ -1,7 +1,7 @@
 \name{meancss}
 \alias{meancss}
-\title{computes data statistics necessary for evaluation of the log likelihood}
-\description{The function is useful for deriving the maximum likelihood estimates of the model parameters.}
+\title{computes statistics necessary for the evaluation of the log likelihood}
+\description{The function is useful for deriving arguments of the maximum likelihood estimates of the model parameters.}
 \usage{meancss(x,rep.id=1:nrow(x))}
  \arguments{
  \item{x}{The data matrix, clustering individuals in rows, variables in columns.}
@@ -13,9 +13,9 @@
 \item{css}{The corrected sum of squares of individuals.}
 \item{repno}{The vector containing the number of replications of individuals according to \code{rep.id}.}
 }
-\details{This function facilitates the usage of \code{loglikelihood} function.}
+\details{This function facilitates the usage of the \code{loglikelihood} function.}
 \seealso{
-		\link{loglikelihood}
+		\link{loglikelihood}.
 			}
 \examples{
 data(gaelle)

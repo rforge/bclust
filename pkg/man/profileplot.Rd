@@ -1,50 +1,47 @@
 \name{profileplot}
-\Rdversion{1.1}
 \alias{profileplot}
-\title{a plot useful to demonstrate replicated data}
-\description{The profile plot is a flexible function creating profiles of replicated data with many useful options and useful to attach to other plots like horizontal dendrogram plot or a teethplot.}
+\title{a plot useful to visualise replicated data}
+\description{The profile plot is a flexible function creating profiles of replicated data with many useful options. The resulting plot can be attached to other plots a like horizontal dendrogram plot or a teethplot.}
 \usage{
 profileplot(x, rep.id, labels = NULL, scale = 1, col.names = colnames(x), plot.order = 1:max(rep.id), xlab.mar = 5, ylab.mar = 5, xlab.cex = 0.8, ylab.cex = 1, profile.col = rep(1, max(rep.id)), blob.matrix = matrix(0, ncol = ncol(x), nrow = max(rep.id)), blob.col = rev(heat.colors(max(blob.matrix))), blob.cex = 1.5)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-The data matrix with subjects in rows and variables in columns
+The data matrix with subjects in rows and variables in columns.
 }
   \item{rep.id}{
-A vector refering to replication of a subject.
+A vector referring to replication of a subject.
 }
   \item{labels}{The labels of each subject. The first element corresponds to the subject that takes value 1 in \code{rep.id}, the second element is the one that takes value 2 in \code{rep.id} 
   and so on. 
 }
-  \item{scale}{If the profile plots are noisy, increase the scale factor.
+  \item{scale}{A positive value. If the profile plots are noisy or flat, adjust the scaling factor.}
+  \item{col.names}{The data column labels (variable labels) in a string vector.
 }
-  \item{col.names}{The variable labels in a string vector.
+  \item{plot.order}{A positive integer vector, the order that subjects should be plotted. This is useful if you like to attach this plot to a dendrogram or a teeth plot.
 }
-  \item{plot.order}{The order that subjects should be plotted. This is useful if you like to attach this plot to a dendrogram or a teeth plot.
+  \item{xlab.mar}{A positive value, the margin reserved for column (variable) labels.
 }
-  \item{xlab.mar}{The margin reserved for variable labels.
+  \item{ylab.mar}{A positive value, the margin reserved for subject labels.
 }
-  \item{ylab.mar}{The margin reserved for subject labels.
+  \item{xlab.cex}{A positive value, the magnitude of the variable labels.
 }
-  \item{xlab.cex}{The magnitude of the variable labels.
+  \item{ylab.cex}{A positive value, the magnitude of thee subject labels.
 }
-  \item{ylab.cex}{The magnitude of thee subject labels.
+  \item{profile.col}{Colours that you may used to plot each profile.
 }
-  \item{profile.col}{Colors that you may used to plot each subject.
+  \item{blob.matrix}{An integer matrix denoting where to plot a colour blob and which colour should be used in which location. The value 0 plots no blobs, value 1 refers to plotting a blob with a 
+  colour specified in \code{blob.col}.
 }
-  \item{blob.matrix}{An integer matrix denoting where to plot a color blob and which color should be used in which location. The value 0 plots no blobs, value 1 refers to plotting a blob with a 
-  color specified in \code{blob.col}.
-}
-  \item{blob.col}{The colors that is used for each value of \code{blob.matrix}}
+  \item{blob.col}{The colours that is used for each value of \code{blob.matrix}}
   \item{blob.cex}{The magnitude of blobs.
 }
 }
 \details{
-Some of the options may be useless for just a profile plot, but all of them are necessary for a good visual representation of data when the plot is attached to a dendrogram or a teethplot.
+Some of the options may be useless for just a profile plot, but all of them are beneficial for a good visual representation of data when the plot is attached to a dendrogram or a teethplot.
 }
 \seealso{
-\link{teethplot}
+\link{teethplot}, \link{ditplot}, \link{dptplot}.
 }
 \examples{
 data(gaelle)

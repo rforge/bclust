@@ -1,24 +1,22 @@
 \name{imp}
-\Rdversion{1.1}
 \alias{imp}
 \title{
 calculates variable and variable-cluster importances
 }
 \description{
-The function computes the log Bayes factors for the hypothesis H0: variable or variable-cluster combination is useful for clustering  according to 
-for the optimal allocation found by agglomerative method.
+The function computes the log Bayes factors for the hypothesis H0: variable or variable-cluster combination is useful for clustering  against: H1: the variable or variable-cluster combination is useless. The Bayes factors are computed for the optimal allocation found by the bclust function.
 }
 \usage{
 imp(x)
 }
 \arguments{
-  \item{x}{ A \code{bclustvs} object created by \code{bclust} function.}
+  \item{x}{ A \code{bclustvs} object.}
 }
 \value{
-\item{var}{A sorted vector being the log Bayes factor of \eqn{\delta}=1 against \eqn{\delta}=0 , see \link{bclust} for details.}
-\item{varclust}{A vector being the log Bayes factor of \eqn{\gamma}=1 against \eqn{\gamma}=0, ordered according to \code{var}, see \link{bclust} for details.}
-\item{labels}{A vector of variable labels ordered according to \code{var}.}
-\item{order}{The order of \code{var} used to sort \code{varclust} and \code{labels}.}
+\item{var}{A vector being the log Bayes factor of \eqn{\delta_v=1}{d_{v}=1} against \eqn{\delta_v=0}{d_{v}=0}, see \link{bclust} for details.}
+\item{varclust}{A vector being the log Bayes factor of \eqn{\gamma_{vc}=1}{g_{vc}=1} against \eqn{\gamma_{vc}=0}{g_{vc}=0}, see \link{bclust} for details.}
+\item{labels}{The vector of variable labels extracted from the \code{bclustvs} object.}
+\item{order}{The order of \code{var} useful to sort \code{var}, \code{varclust}, and accordingly \code{labels}.}
 }
 \seealso{bclust}
 \examples{
@@ -30,7 +28,8 @@ gaelle.bclust<-bclust(gaelle,rep.id=gaelle.id,transformed.par=c(-1.84,-0.99,1.63
 
 gaelle.imp<-imp(gaelle.bclust)
 
-
+#plot the variable importances 
+par(mfrow=c(1,1)) #retreive graphic defaults 
 par(mar = c(10, 4, 4, 2) + 0.1) # leave some space for labels
 bp <- barplot(gaelle.imp$var) #plot bars
 text(bp, par("usr")[3] - 0.5, srt = 90, adj = 1,

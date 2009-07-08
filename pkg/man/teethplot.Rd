@@ -1,28 +1,23 @@
 \name{teethplot}
 \alias{teethplot}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 produces teeth plot useful for demonstating a grouping on clustered subjects}
 \description{
-The function alone is useless but can be attached to a horizontal dendrogram to declare a specified partition proposed by the tree.
+The function alone is useless but can be attached to a horizontal dendrogram, a profile plot, or an image plot to declare a specified partition proposed by the tree.
 }
 \usage{
 teethplot(x, teeth.space = 0.25, teeth.lwd = 1)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{A \code{bclustvs} object.
-}
-  \item{teeth.space}{
-The space between two teeth, a value between 0 and 0.25}
-  \item{teeth.lwd}{The tickness of the lines used to draw the teeth.
-}
+  \item{x}{A \code{bclustvs} object.}
+  \item{teeth.space}{The space between two teeth, a value between 0 and 0.25.}
+  \item{teeth.lwd}{The thickness of the lines used to draw the teeth.}
 }
 \details{
-The teeth plot for the moment can be attached only to a horizontal dendrogram plot. 
+The teeth plot for the moment shows the grouping vertically. 
 }
 \seealso{
-\link{profileplot}
+\link{profileplot}, \link{ditplot}, \link{dptplot}.
 }
 \examples{
 data(gaelle)
