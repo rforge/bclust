@@ -582,7 +582,7 @@ layout(matrix(c(2,1,3,4,0,5,0,0),2,4,byrow=TRUE), c(dendrogram.size,plot.width,t
 
 if (is.null(xlab)) {image.bmargin<-0} else {image.bmargin<-xlab.mar} #bottom margin for xlabels
 if (is.null(ylab)) {image.rmargin<-0.2} else {image.rmargin<-ylab.mar} #right margin for ylabels
-# do the image plot
+
             bclust.dendro <- as.dendrogram(x)
            rowInd <- order.dendrogram(bclust.dendro)
             x.data<-x.data[rowInd,] 
@@ -722,7 +722,7 @@ layout(matrix(c(2,1,3,4,0,5,0,0),2,4,byrow=TRUE), c(dendrogram.size,plot.width,t
 
 if (is.null(xlab)) {image.bmargin<-0} else {image.bmargin<-xlab.mar} #bottom margin for xlabels
 if (is.null(ylab)) {image.rmargin<-0.2} else {image.rmargin<-ylab.mar} #right margin for ylabels
-# do the image plot
+
             bclust.dendro <- as.dendrogram(x)
            rowInd <- order.dendrogram(bclust.dendro)
             x.data<-x$data
@@ -730,14 +730,9 @@ if (is.null(ylab)) {image.rmargin<-0.2} else {image.rmargin<-ylab.mar} #right ma
             varimp<-sort(varimp,decreasing=TRUE)
             varimp<-logbfcoder(varimp)
 # plot 1
-#par(mar=c(heatbar.distance+image.bmargin,0,0,image.rmargin))
 
 profileplot(x=x.data, rep.id=rep(1:length(x$repno),x$repno), labels = ylab, scale = scale, col.names = xlab, plot.order = rowInd, xlab.mar =(horizbar.distance+image.bmargin), ylab.mar = image.rmargin, xlab.cex = xlab.cex, ylab.cex = ylab.cex)
 
-#if(!is.null(xlab)) {axis(1, 1:ncol(x.data), las = 2, line = -0.5, tick = 0, 
- #           labels = xlab, cex.axis = xlab.cex)}
-#if(!is.null(ylab)){axis(4, 1:nrow(x.data), las = 2, line = -0.5, tick = 0, 
-#        labels = ylab, cex.axis =ylab.cex)} #r.cex)
 
 par(mar=c(horizbar.distance+image.bmargin,0.5,0,0))
 # plot 2
@@ -918,6 +913,12 @@ repno<-as.vector(table(trainingrep.id[id.order]))
 y<-training[id.order,]
 labels<-training.labels
 if (is.null(labels)){if (is.null(rownames(training))) {labels<-paste(1:length(repno))} else  {if (length(repno)==nrow(training)){labels<-rownames(training)};labels<-labels[id.order]} } else {if (!(length(labels)==length(repno))){warning("label length does not match with the data")}}
+
+if(!is.null(predict)){
+	if (!is.matrix(predict)) {stop("predict should be a matrix")}
+	if (!(ncol(predict)==ncol(training))) stop("dimension of predict unmatches with training")
+	if(sum(is.na(training))>0) {stop("NA is not allowed in predict")}
+	}
 
 bprob<-NULL
 
