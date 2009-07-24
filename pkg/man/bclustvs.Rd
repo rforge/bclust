@@ -14,7 +14,7 @@
 	\item{transformed.par}{The transformed values of the model hyperparameters. 
 	  The log transformation is applied for the variance parameters, the identity for the mean, and the logit for the proportions.}
 	\item{labels}{The labels associated to each clustering individual.}
-	\item{effect.family}{The distribution assigned to the disappearing random effect.}
-	\item{var.select}{The availability of variable selection.}
+	\item{effect.family}{The distribution assigned to the disappearing random effect in the function arguments.}
+	\item{var.select}{The variable selection chosen in the function arguments.}
       }
 

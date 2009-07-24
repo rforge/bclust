@@ -2,7 +2,11 @@
 \alias{bdiscrim}
 \title{discrimination using a Bayesian linear model}
 \description{This function provides a discrimination method equivalent to the \code{bclust} clustering function.}
-\usage{bdiscrim(training, trainingrep.id, training.labels = NULL, predict, predict.label = rownames(predict)[1], effect.family = "gaussian", var.select = TRUE, transformed.par, priorprob = rep(1, max(trainingrep.id) + 1))}
+\usage{bdiscrim(training, trainingrep.id, 
+training.labels = NULL, predict, 
+predict.label = rownames(predict)[1], 
+effect.family = "gaussian", var.select = TRUE, 
+transformed.par, priorprob = rep(1, max(trainingrep.id) + 1))}
 \arguments{
   \item{training}{A numeric matrix of the training set with observations in rows and variables in columns}
   \item{trainingrep.id}{A vector consisting of positive integer elements having the

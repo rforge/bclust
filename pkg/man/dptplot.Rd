@@ -4,8 +4,9 @@
 \description{This is a plot function suitable for visualisation of  bclustvs object when bclust function is used on replicated data. This plot function can be applied for unreplicated data too. 
 The function attaches a coloured horizontal dendrogram to the left side of a profile plot with the optimal grouping highlighted by a teethplot on the right.}
 \usage{
-dptplot(x, scale = 1, xlab = colnames(x$data), ylab = x$labels, xlab.cex = 1, ylab.cex = 1, 
-dendrogram.lwd = 1, dendrogram.size = 2, xlab.mar = 3, ylab.mar = 3, horizbar.plot = FALSE, 
+dptplot(x, scale = 1, xlab = colnames(x$data), ylab = x$labels, 
+xlab.cex = 1, ylab.cex = 1, dendrogram.lwd = 1, 
+dendrogram.size = 2, xlab.mar = 3, ylab.mar = 3, horizbar.plot = FALSE, 
 horizbar.col = rev(c(heat.colors(5)[-4], "white")), horizbar.distance = 4,  
 varimp = rep(0, ncol(x$data)), horizbar.size = 0.5, vertbar = NULL, 
 vertbar.col = rainbow(max(vertbar)), teeth.size = 0.25, plot.width = 10)}

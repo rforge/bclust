@@ -7,7 +7,8 @@
 \description{The function is useful for deriving the maximum likelihood
   estimates of the model parameters.}
 
-\usage{loglikelihood(x.mean,x.css,repno,transformed.par,effect.family="gaussian",var.select=TRUE)}
+\usage{loglikelihood(x.mean,x.css,repno,transformed.par,
+effect.family="gaussian",var.select=TRUE)}
 
  \arguments{
    \item{x.mean}{The mean matrix of the clustering individuals from the \link{meancss} function.}

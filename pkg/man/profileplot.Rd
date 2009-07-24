@@ -3,7 +3,11 @@
 \title{a plot useful to visualise replicated data}
 \description{The profile plot is a flexible function creating profiles of replicated data with many useful options. The resulting plot can be attached to other plots a like horizontal dendrogram plot or a teethplot.}
 \usage{
-profileplot(x, rep.id, labels = NULL, scale = 1, col.names = colnames(x), plot.order = 1:max(rep.id), xlab.mar = 5, ylab.mar = 5, xlab.cex = 0.8, ylab.cex = 1, profile.col = rep(1, max(rep.id)), blob.matrix = matrix(0, ncol = ncol(x), nrow = max(rep.id)), blob.col = rev(heat.colors(max(blob.matrix))), blob.cex = 1.5)
+profileplot(x, rep.id, labels = NULL, scale = 1, col.names = colnames(x), 
+plot.order = 1:max(rep.id), xlab.mar = 5, ylab.mar = 5, 
+xlab.cex = 0.8, ylab.cex = 1, profile.col = rep(1, max(rep.id)), 
+blob.matrix = matrix(0, ncol = ncol(x), nrow = max(rep.id)), 
+blob.col = rev(heat.colors(max(blob.matrix))), blob.cex = 1.5)
 }
 \arguments{
   \item{x}{

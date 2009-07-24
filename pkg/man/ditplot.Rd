@@ -4,8 +4,11 @@
 \description{This is a handy function to plot a \code{bclustvs} object.  The function attaches a coloured horizontal dendrogram to the left side of an image plot with the optimal grouping 
 highlighted by a teethplot on the right.}
 \usage{
-ditplot(x, xlab = colnames(x$data), ylab = x$labels, xlab.cex = 1, ylab.cex = 1, 
-dendrogram.lwd = 1, dendrogram.size = 2, xlab.mar = 3, ylab.mar = 3, image.col = rainbow(20), horizbar.plot = FALSE, horizbar.col = rev(c(heat.colors(5)[-4], "white")), horizbar.distance = 4, varimp = rep(0, ncol(x$data)), horizbar.size = 0.5, vertbar = NULL, 
+ditplot(x, xlab = colnames(x$data), ylab = x$labels, xlab.cex = 1, 
+ylab.cex = 1, dendrogram.lwd = 1, dendrogram.size = 2, xlab.mar = 3, 
+ylab.mar = 3, image.col = rainbow(20), horizbar.plot = FALSE, 
+horizbar.col = rev(c(heat.colors(5)[-4], "white")), horizbar.distance = 4, 
+varimp = rep(0, ncol(x$data)), horizbar.size = 0.5, vertbar = NULL, 
 vertbar.col = rainbow(max(vertbar)), teeth.size = 0.25, plot.width = 10)
 }
 \arguments{
