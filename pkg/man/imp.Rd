@@ -15,6 +15,7 @@ imp(x)
 \value{
 \item{var}{A vector being the log Bayes factor of \eqn{\delta_v=1}{d_{v}=1} against \eqn{\delta_v=0}{d_{v}=0}, see \link{bclust} for details.}
 \item{varclust}{A vector being the log Bayes factor of \eqn{\gamma_{vc}=1}{g_{vc}=1} against \eqn{\gamma_{vc}=0}{g_{vc}=0}, see \link{bclust} for details.}
+\item{repno}{The number of replicates producing eachrow of \code{varclust}.}
 \item{labels}{The vector of variable labels extracted from the \code{bclustvs} object.}
 \item{order}{The order of \code{var} useful to sort \code{var}, \code{varclust}, and accordingly \code{labels}.}
 }
@@ -30,18 +31,19 @@ gaelle.imp<-imp(gaelle.bclust)
 
 #plot the variable importances 
 par(mfrow=c(1,1)) #retreive graphic defaults 
-par(mar = c(10, 4, 4, 2) + 0.1) # leave some space for labels
-bp <- barplot(gaelle.imp$var) #plot bars
-text(bp, par("usr")[3] - 0.5, srt = 90, adj = 1,
-labels = gaelle.imp$labels, xpd = TRUE) #plot variable labels
-mtext(1, text = "Metabolite", line = 7,cex=1.5)# add x axis label
-mtext(2, text = "Log Bayes Factor", line = 3,cex=1.2)# add y axis labels
 
-#now bars are ordered respect to variable importance
-par(mar = c(10, 4, 4, 2) + 0.1) # leave some space for labels
-bp <- barplot(gaelle.imp$var[gaelle.imp$order],col=heat.colors(length(gaelle.imp$var))) #plot color bars
-text(bp, par("usr")[3] - 0.5, srt = 90, adj = 1,
-labels = gaelle.imp$labels[gaelle.imp$order], xpd = TRUE)#plot variable labels
+mycolor<-gaelle.imp$var
+mycolor<-c()
+mycolor[gaelle.imp$var>0]<-"black"
+mycolor[gaelle.imp$var<=0]<-"white"
+
+viplot(var=gaelle.imp$var,xlab=gaelle.imp$labels,col=mycolor)
+#plot important variables with balck
+
+viplot(var=gaelle.imp$var,xlab=gaelle.imp$labels,
+sort=TRUE,col=heat.colors(length(gaelle.imp$var)),
+xlab.mar=10,ylab.mar=4)
 mtext(1, text = "Metabolite", line = 7,cex=1.5)# add x axis label
 mtext(2, text = "Log Bayes Factor", line = 3,cex=1.2)# add y axis labels
+#sort importnaces and use heat colors add some labels to the x and y axes
 }

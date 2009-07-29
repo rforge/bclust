@@ -39,7 +39,7 @@ the result of the \code{imp} function, keep \code{horizbar.plot=FALSE}.}
 Kass and Raftery (1995) Bayes Factors, Journal of the American Statistical Association, Vol. 90, pp. 773--795.
 }
 \seealso{
-\link{dptplot}, \link{teethplot}
+\link{dptplot}, \link{teethplot},\link{profileplot},\link{viplot}.
 }
 \examples{
 data(gaelle)

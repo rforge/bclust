@@ -17,13 +17,15 @@ xlab.cex = 1, sort = FALSE, ...)
   \item{\dots}{The barplot options.}
 }
 \details{It is not strightforward to rotate x labels of a barplot. This function does it easily.}
-\seealso{\link{imp}.}
+\seealso{\link{imp}, \link{dptplot}, \link{ditplot}.}
 \examples{
 data(gaelle)
 gaelle.bclust<-bclust(gaelle,transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68))
 gaelle.imp<-imp(gaelle.bclust)
-viplot(varimp=gaelle.imp$var,xlab=imp(gaelle.bclust)$labels)# solid plot
+viplot(varimp=gaelle.imp$var)
+# solid plot 
 
 viplot(varimp=gaelle.imp$var,xlab=imp(gaelle.bclust)$labels,
-sort=TRUE,col=heat.colors(length(gaelle.imp$var))) # sorted plot
+sort=TRUE,col=heat.colors(length(gaelle.imp$var))) 
+# sorted plot with heat colors and labels
 }

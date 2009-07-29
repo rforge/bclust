@@ -331,14 +331,16 @@ viplot<-function(varimp,xlab,xlab.mar=5,ylab.mar=4,xlab.srt=90,xlab.cex=1,
 sort=FALSE,...)
 {
 par(mar = c(xlab.mar,ylab.mar, 0.5, 0) + 0.1) # leave some space for labels
-if(!sort)
-{
+if(missing(varimp)) stop ("varimp is missing")
+if(missing(xlab)) {xlab<-paste(1:length(varimp))}
 if(!(is.vector(xlab)))stop("xlab is not a vector")
 if(!(is.vector(varimp)))stop("var is not a vector")
 if(!(is.numeric(varimp)))stop("var is not numeric")
 if(!((xlab.mar>=0)|(ylab.mar>=0)))stop("margin value is not numeric")
 if(!(is.numeric(xlab.srt)))stop("xlab.srt is not numeric")
 if(!(xlab.cex>0))stop("xlab.cex is not appropriate")
+if(!sort)
+{
 bp <- barplot(varimp,...) #plot bars
 text(bp, par("usr")[3] - 0.5, srt = xlab.srt, adj = 1,
      labels = xlab, xpd = TRUE,cex=xlab.cex,) #plot variable labels
