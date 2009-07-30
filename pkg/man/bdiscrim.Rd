@@ -106,9 +106,8 @@ labels=gaelle.lab,scale=10,blob.matrix=blob,ylab.mar=5,xlab.mar=7)
 # and sort variables according to variable importance values
 
 
-par(mar = c(5, 4, 4, 2) + 0.1) # leave some space for labels
-bp <- barplot(sort(varimp,decreasing=TRUE),col=varcol[var.order]) #plot bars
-text(bp, par("usr")[3]-0.5, srt = 90,adj=1,
-labels = colnames(gaelle)[var.order], xpd = TRUE) 
+
+viplot(varimp=varimp, xlab=colnames(gaelle)[var.order],
+xlab.mar=10,sort=TRUE,col=varcol[var.order])
 #plot sorted variable importances 
 }
