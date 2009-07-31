@@ -4,7 +4,7 @@
 calculates variable and variable-cluster importances
 }
 \description{
-The function computes the log Bayes factors for the hypothesis H0: variable or variable-cluster combination is useful for clustering  against: H1: the variable or variable-cluster combination is useless. The Bayes factors are computed for the optimal allocation found by the bclust function.
+The function computes the log Bayes factors for the hypothesis H0: the variable or the variable-cluster combination is useful for clustering  against H1: the variable or the variable-cluster combination is useless. The Bayes factors are computed for the optimal allocation found by the \code{bclust} function.
 }
 \usage{
 imp(x)
@@ -15,11 +15,11 @@ imp(x)
 \value{
 \item{var}{A vector being the log Bayes factor of \eqn{\delta_v=1}{d_{v}=1} against \eqn{\delta_v=0}{d_{v}=0}, see \link{bclust} for details.}
 \item{varclust}{A vector being the log Bayes factor of \eqn{\gamma_{vc}=1}{g_{vc}=1} against \eqn{\gamma_{vc}=0}{g_{vc}=0}, see \link{bclust} for details.}
-\item{repno}{The number of replicates producing eachrow of \code{varclust}.}
+\item{repno}{The number of replicates producing each row of \code{varclust}.}
 \item{labels}{The vector of variable labels extracted from the \code{bclustvs} object.}
-\item{order}{The order of \code{var} useful to sort \code{var}, \code{varclust}, and accordingly \code{labels}.}
+\item{order}{The order of \code{var} useful to sort \code{var}, \code{varclust}, and \code{labels}.}
 }
-\seealso{bclust}
+\seealso{bclust}.
 \examples{
 data(gaelle)
 

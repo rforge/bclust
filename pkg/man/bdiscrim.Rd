@@ -8,14 +8,14 @@ predict.label = rownames(predict)[1],
 effect.family = "gaussian", var.select = TRUE, 
 transformed.par, priorprob = rep(1, max(trainingrep.id) + 1))}
 \arguments{
-  \item{training}{A numeric matrix of the training set with observations in rows and variables in columns}
+  \item{training}{A numeric matrix of the training set with observations in rows and variables in columns.}
   \item{trainingrep.id}{A vector consisting of positive integer elements having the
- same length as the number of rows of \code{training}. This vector identifies replicates of a type such that the total number of classes is \code{max(trainingrep.id)}. }
+ same length as the number of rows of \code{training}. This vector identifies observations of a class such that the total number of classes is \code{max(trainingrep.id)}. }
   \item{training.labels}{A vector of strings
  referring to the labels of each class. The length of the
  vector should match to \code{max(trainingrep.id)}. The first element corresponds to the label of the type having the smallest integer value in \code{trainingrep.id}, the second element refers to 
  the label of the type having the second smallest integer in \code{trainingrep.id}, and so on.} 
-  \item{predict}{A single type to be discriminated to one of the classes, with replications of the type in rows and variables in columns. The number of variables should be the same as in \code{training}. If it is not specified just the importances will be calculated.}
+  \item{predict}{A single discriminating type to be classified to one of the classes, with replications of the discriminating type in rows and variables in columns. The number of variables should be the same as in \code{training}. If it is not specified just the variable and variable-class importances will be calculated.}
   \item{predict.label}{A single string, the label of the discriminating type.}
   \item{effect.family}{Distribution family of the disappearing random components of the model. Choices are "gaussian" or "alaplace"
  allowing Gaussian or asymmetric Laplace family, respectively.}

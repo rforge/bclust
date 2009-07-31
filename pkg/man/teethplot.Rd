@@ -3,7 +3,7 @@
 \title{
 produces teeth plot useful for demonstating a grouping on clustered subjects}
 \description{
-The function alone is useless but can be attached to a horizontal dendrogram, a profile plot, or an image plot to declare a specified partition proposed by the tree.
+The function alone is useless but can be attached to a horizontal dendrogram, a profile plot, or an image plot to show a specified partitioning.
 }
 \usage{
 teethplot(x, teeth.space = 0.25, teeth.lwd = 1)

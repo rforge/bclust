@@ -1,7 +1,7 @@
 \name{profileplot}
 \alias{profileplot}
 \title{a plot useful to visualise replicated data}
-\description{The profile plot is a flexible function creating profiles of replicated data with many useful options. The resulting plot can be attached to other plots a like horizontal dendrogram plot or a teethplot.}
+\description{The profile plot is a flexible function creating profiles of replicated data with many useful options. The resulting plot can be attached to other plots like a horizontal dendrogram plot or a teethplot.}
 \usage{
 profileplot(x, rep.id, labels = NULL, scale = 1, col.names = colnames(x), 
 plot.order = 1:max(rep.id), xlab.mar = 5, ylab.mar = 5, 
@@ -14,7 +14,7 @@ blob.col = rev(heat.colors(max(blob.matrix))), blob.cex = 1.5)
 The data matrix with subjects in rows and variables in columns.
 }
   \item{rep.id}{
-A vector referring to replication of a subject.
+A positive integer vector referring to replication of a subject such that the total number of subjects is \code{max(rep.id)}.
 }
   \item{labels}{The labels of each subject. The first element corresponds to the subject that takes value 1 in \code{rep.id}, the second element is the one that takes value 2 in \code{rep.id} 
   and so on. 
@@ -24,17 +24,19 @@ A vector referring to replication of a subject.
 }
   \item{plot.order}{A positive integer vector, the order that subjects should be plotted. This is useful if you like to attach this plot to a dendrogram or a teeth plot.
 }
-  \item{xlab.mar}{A positive value, the margin reserved for column (variable) labels.
+  \item{xlab.mar}{A positive value, the margin reserved for the column (variable) labels.
 }
-  \item{ylab.mar}{A positive value, the margin reserved for subject labels.
+  \item{ylab.mar}{A positive value, the margin reserved for the subject labels.
 }
   \item{xlab.cex}{A positive value, the magnitude of the variable labels.
 }
-  \item{ylab.cex}{A positive value, the magnitude of thee subject labels.
+  \item{ylab.cex}{A positive value, the magnitude of the subject labels.
 }
   \item{profile.col}{Colours that you may used to plot each profile.
 }
-  \item{blob.matrix}{An integer matrix denoting where to plot a colour blob and which colour should be used in which location. The value 0 plots no blobs, value 1 refers to plotting a blob with a 
+  \item{blob.matrix}{An integer matrix denoting where to plot a colour blob and which colour should be used in which location. 
+  The number of rows of this matrix should be \code{max(rep.id)} and the number of columns should be \code{ncol(x)}.
+  The value 0 plots no blobs, value 1 refers to plotting a blob with a 
   colour specified in \code{blob.col}.
 }
   \item{blob.col}{The colours that is used for each value of \code{blob.matrix}}

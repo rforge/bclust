@@ -1,17 +1,17 @@
 \name{meancss}
 \alias{meancss}
 \title{computes statistics necessary for the evaluation of the log likelihood}
-\description{The function is useful for deriving arguments of the maximum likelihood estimates of the model parameters.}
+\description{The function is useful for deriving arguments of the \link{loglikelihood} function.}
 \usage{meancss(x,rep.id=1:nrow(x))}
  \arguments{
- \item{x}{The data matrix, clustering individuals in rows, variables in columns.}
+ \item{x}{The data matrix, subjects in rows, variables in columns.}
  \item{rep.id}{A vector of positive integers refering to replication of the types. The same integer is associated to the the replicates of the same type. 
  Not specifying this vector preproposes that the data are unreplicated.}
   	}
 \value{
-\item{mean}{The mean of individuals.}
-\item{css}{The corrected sum of squares of individuals.}
-\item{repno}{The vector containing the number of replications of individuals according to \code{rep.id}.}
+\item{mean}{The mean of types.}
+\item{css}{The corrected sum of squares of types.}
+\item{repno}{The vector containing the number of replications of types according to \code{rep.id}.}
 }
 \details{This function facilitates the usage of the \code{loglikelihood} function.}
 \seealso{

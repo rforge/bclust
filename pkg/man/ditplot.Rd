@@ -22,19 +22,19 @@ vertbar.col = rainbow(max(vertbar)), teeth.size = 0.25, plot.width = 10)
   \item{xlab.mar}{A positive value, the margin reserved to write variable labels.}
   \item{ylab.mar}{A positive value, the margin reserved to write type labels.}
   \item{image.col}{Colours used for the image plot.}
-  \item{horizbar.plot}{Logical, if \code{TRUE} a horizontal bar is plotted according to categorised \code{varimp}.}
+  \item{horizbar.plot}{A logical value, if \code{TRUE} a horizontal bar is plotted according to categorised \code{varimp}.}
   \item{horizbar.col}{Colours used for the horizontal bar.}
   \item{horizbar.distance}{A positive value, the distance between the horizbar and the image plot.}
-  \item{varimp}{A numerical vector denoting the importance of variables. We propose to use \code{imp} function to compute its values. If it is specified, the variables will be ordered respect to this vector.
+  \item{varimp}{A numerical vector denoting the importance of variables. We propose to use the \code{imp} function to compute these values. If it is specified, the variables will be ordered respect to this vector.
   You may plot the variables with any arbitrary ordering of variables using this argument, then remember to keep \code{horizbar.plot=FALSE}.}
   \item{horizbar.size}{A positive value, the size of the horizontal bar.}
-  \item{vertbar}{A positive integer vector, that may be used to draw an additional vertical bar on the right of the teeth plot. This may be helpful to represent another optional grouping on the data.}
+  \item{vertbar}{A positive integer vector that may be used to draw an additional vertical bar on the right of the teeth plot. This may be helpful to represent another optional grouping on the data.}
   \item{vertbar.col}{The colours used to plot the additional vertical bar.}
   \item{teeth.size}{A positive value, the size of the teeth plot.}
   \item{plot.width}{A positive value, the width of the whole plot. If the plot region is unbalanced in width and height, adjust this value.}
   }
 \details{The \code{varimp} is assumed to be log Bayes factors and therefore categorised according to Kass and Raftery (1995) for a better visualisation. If \code{varimp} is not 
-the result of the \code{imp} function, keep \code{horizbar.plot=FALSE}.}
+result of the \code{imp} function, keep \code{horizbar.plot=FALSE}.}
 \references{
 Kass and Raftery (1995) Bayes Factors, Journal of the American Statistical Association, Vol. 90, pp. 773--795.
 }

@@ -1,7 +1,7 @@
 \name{dptplot}
 \alias{dptplot}
 \title{dendrogram-profile-teeth plot}
-\description{This is a plot function suitable for visualisation of  bclustvs object when bclust function is used on replicated data. This plot function can be applied for unreplicated data too. 
+\description{This is a plot function suitable for visualisation of a \code{bclustvs} object when the \code{bclust} function is used on replicated data, but can be applied for unreplicated data too. 
 The function attaches a coloured horizontal dendrogram to the left side of a profile plot with the optimal grouping highlighted by a teethplot on the right.}
 \usage{
 dptplot(x, scale = 1, xlab = colnames(x$data), ylab = x$labels, 
@@ -22,19 +22,19 @@ vertbar.col = rainbow(max(vertbar)), teeth.size = 0.25, plot.width = 10)}
   \item{dendrogram.size}{A positive value, the size of the dendrogram plot.}
   \item{xlab.mar}{A positive value, the margin reserved to write variable labels.}
   \item{ylab.mar}{A positive value, the margin reserved to write type labels.}
-\item{horizbar.plot}{Logical, if \code{TRUE} a horizontal bar is plotted according to \code{varimp}.}
+\item{horizbar.plot}{A logical value. If \code{TRUE} a horizontal bar is plotted according to the \code{varimp}.}
   \item{horizbar.col}{Colours of the horizontal bar.}
   \item{horizbar.distance}{A positive value, the distance between the horizontal bar and the profile plot.}
     \item{varimp}{A numerical vector denoting the importance of variables. We propose to use \code{imp} function to get the values. If it is specified, the variables will be ordered respect to this vector.
   You may plot the variables with any arbitrary ordering of variables using this argument, then remember to keep \code{horizbar.plot=FALSE}.}
   \item{horizbar.size}{A positive value, the size of the horizontal bar.}
-  \item{vertbar}{A positive integer vector, that may be used to draw an additional vertical bar on the right of the teethplot. This may be helpful to represent another optional grouping on the data.}
+  \item{vertbar}{A positive integer vector that may be used to draw an additional vertical bar on the right of the teethplot. This may be helpful to represent another optional grouping on the data.}
   \item{vertbar.col}{The colours used to plot the additional vertical bar.}
   \item{teeth.size}{A positive integer, the size of the teeth plot.}
   \item{plot.width}{A positive integer, the width of the whole plot. If the plot region is unbalanced in width and height, adjust this value.}
 }
 \details{The \code{varimp} is assumed to be the log Bayes factor and therefore categorised according to Kass and Raftery (1995) for a better visualisation. If \code{varimp} is not 
-the result of \code{imp} function, keep \code{horizbar.plot=FALSE}.}
+result of the \code{imp} function, keep \code{horizbar.plot=FALSE}.}
 \references{
 Kass and Raftery (1995) Bayes Factors, Journal of the American Statistical Association, Vol. 90, pp. 773--795.
 }

@@ -6,10 +6,8 @@
 
 \title{Messerli et. al. metabolomic data}
 
-\description{The Data consist of replicates of 14 mustants to study
-metabolite pathways of genetically modified samples of Arabidopsis
-thaliana. The metabolite data consist of 14 genetically modified samples of
-the plant \emph{Arabidopsis thaliana} grown in three batches. Values
+\description{The dataset consists of replicates of 14 mustants to study
+metabolite pathways of genetically modified samples of \emph{Arabidopsis thaliana}. Values
 of 43 metabolites are measured for each sample which are supposed to monitor their
 genetic changes. The data involve two mutants defective in starch
 biosynthesis, \emph{pgm} and \emph{isa2}; four defective in starch
@@ -25,7 +23,7 @@ last for which there are three \url{http://www.plantphysiol.org/cgi/content/abst
 
 \usage{data(gaelle)}
 \format{
-The format is: matrix with 55 observations measured on 43 variables.
+Matrix with 55 observations measured on 43 variables.
 }
 
 \references{

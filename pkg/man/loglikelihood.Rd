@@ -11,11 +11,11 @@
 effect.family="gaussian",var.select=TRUE)}
 
  \arguments{
-   \item{x.mean}{The mean matrix of the clustering individuals from the \link{meancss} function.}
+   \item{x.mean}{The mean matrix of the clustering types from the \link{meancss} function.}
    
    \item{x.css}{The corrected sum of squares matrix of the clustering types from the \link{meancss} function.}
    \item{repno}{The vector containing the number of replications of each
-     clustering individual corresponding to the each row of \code{x.mean} and \code{x.css}, from the \link{meancss} function.}
+     clustering type corresponding to the each row of \code{x.mean} and \code{x.css}, from the \link{meancss} function.}
    
  \item{transformed.par}{The vector of transformed model parameters that the data likelihood will be evaluated at. The transformation is the log for the variance parameters, the identity for the mean, 
  and the logit for the proportions. The length of the vector depends 
@@ -34,8 +34,7 @@ always check the convergence of the optimisation algorithm. The
 asymmetric Laplace model, \code{effect.family="alaplace"}, is often more
 difficult to optimise than \code{effect.family="gaussian"}.
 
-If your data is standardised (having general mean
-equal to zero and general variance equal one) the
+If your data is standardised (having general mean zero and general variance one) the
 \code{loglikelihood} function is usually maximised over values between -5 and 5.
 
 The \code{transformed.par} is a vector of transformed model parameters
@@ -50,7 +49,7 @@ When \code{var.select=FALSE} the \eqn{q} parameter is dropped, yielding a vector
 of length 5 for \code{effect.family="gaussian"} and a vector of length 6
 for \code{effect.family="alaplace"}.
 
-We assumed a Bayesian linear model for clustering being \deqn{y_{vctr}=\mu+\eta_{vct}+\delta_v \gamma_{vc}\theta_{vc}+\varepsilon_{vctr}}{y_{vctr}=m+h_{vct}+d_{v}*g_{vc}*t_{vc}+e_{vctr}} where \eqn{y_{vctr}} is the available data on variable \eqn{v}, 
+We assumed a Bayesian linear model being \deqn{y_{vctr}=\mu+\eta_{vct}+\delta_v \gamma_{vc}\theta_{vc}+\varepsilon_{vctr}}{y_{vctr}=m+h_{vct}+d_{v}*g_{vc}*t_{vc}+e_{vctr}} where \eqn{y_{vctr}} is the available data on variable \eqn{v}, 
 cluster(or class) \eqn{c}, type \eqn{t}, and replicate \eqn{r}; \eqn{\eta_{vct}}{h_{vct}}
 is the between-type error, \eqn{\theta_{vc}}{t_{vc}} is the disappearing random component controlled by the Bernoulli variables \eqn{\delta_v}{d_{v}} with success probability \eqn{q} and \eqn{\gamma_{vc}}{g_{vc}} with 
 success probability \eqn{p}; and \eqn{\varepsilon_{vctr}}{e_{vctr}} is the between-replicate error. The types inside a cluster (or class) share the same \eqn{\theta_{vc}}{t_{vc}}, but may arise with a different  \eqn{\eta_{vct}}{h_{vct}}, 
@@ -60,9 +59,9 @@ The model parameters has natural interpretations, \eqn{\sigma^2}{s2} is the
 between replicate error variance; \eqn{\sigma^2_\eta}{s2_h} is the variance of
 between-type error; \eqn{\sigma^2_\theta}{s2_t} is the variance of
 the disappearing random component which is decomposed to
-\eqn{\sigma^2_{\theta_L}{s2_tL}, \sigma^2_{\theta_R}{s2_tR}} the left and the right tail
+\eqn{\sigma^2_{\theta_L}}{s2_tL}, \eqn{\sigma^2_{\theta_R}}{s2_tR} the left and the right tail
 variances if the model is asymmetric Laplace; \eqn{\mu}{m} is the general
-mean; \eqn{p} is the proportion of active variable-cluster (or variable-class) combinations, and
+level; \eqn{p} is the proportion of active variable-cluster (or variable-class) combinations, and
 \eqn{q} is the proportion of the active variables. For more details about
 the model and parameters, see the website of the package \url{http://bclust.probstat.ch}. }
 

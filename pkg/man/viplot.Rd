@@ -9,14 +9,14 @@ xlab.cex = 1, sort = FALSE, ...)
 \arguments{
   \item{varimp}{A numeric vector, variable importances.}
   \item{xlab}{A vector of strings. Labels to be plotted on x-axis.}
-  \item{xlab.mar}{A positive value. The margin reserved for x-axis.}
-  \item{ylab.mar}{A positive value, The margin reserved for y-axis.}
+  \item{xlab.mar}{A positive value. The margin reserved for x-axis labels.}
+  \item{ylab.mar}{A positive value, The margin reserved for y-axis labels.}
   \item{xlab.srt}{A numeric value, amount of rotation of the x-axis labels.}
-  \item{xlab.cex}{A positive value, magnitude of x labels.}
-  \item{sort}{Logical, if sorted variables should be plotted.}
-  \item{\dots}{The barplot options.}
+  \item{xlab.cex}{A positive value, magnitude of x-axis labels.}
+  \item{sort}{A logical value, \code{TRUE} if sorted variables should be plotted.}
+  \item{\dots}{The \code{barplot} options.}
 }
-\details{It is not strightforward to rotate x labels of a barplot. This function does it easily.}
+\details{It is not strightforward to rotate x labels of a \code{barplot}. This function does it easily.}
 \seealso{\link{imp}, \link{dptplot}, \link{ditplot}.}
 \examples{
 data(gaelle)
