@@ -1,7 +1,7 @@
 Package: bclust
 Type: Package
 Title: Bayesian clustering using spike-and-slab hierarchical model, suitable for clustering high-dimensional data.
-Version: 1.0.0
+Version: 1.0
 Date: 2009-08-01
 Author: Vahid PARTOVI NIA and Anthony C. DAVISON
 Maintainer: Vahid PARTOVI NIA <bclust@probstat.ch>

@@ -19,7 +19,7 @@ imp(x)
 \item{labels}{The vector of variable labels extracted from the \code{bclustvs} object.}
 \item{order}{The order of \code{var} useful to sort \code{var}, \code{varclust}, and \code{labels}.}
 }
-\seealso{bclust}.
+\seealso{\link{bclust}.}
 \examples{
 data(gaelle)
 
