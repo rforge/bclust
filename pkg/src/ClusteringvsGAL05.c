@@ -2850,15 +2850,6 @@ void RmcmcAL(double *y, int *nrowy, int *ncoly, double *repno,
 		}*/
 /*	printf( "\n");*/
 
-	void Rrnorm(double *mu, double *sigma, double *result)
-	{
-	int i;
-	GetRNGstate();
-		for (i=0;i<20;i++)
-		{
-		printf("it is %d \n",  rnorm(*mu,*sigma));
-		}
-	}
 
 
 

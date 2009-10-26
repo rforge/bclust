@@ -739,7 +739,7 @@ cutplot.dendrogramh = function(x, h, cluscol=NULL, leaflab= "none", horiz=TRUE, 
                  leaflab=leaflab, nodePar=NULL, edgePar=list(), horiz=horiz)
         x1 = x2 + 1
    }
-abline(v=h,col=1,lwd=lwd)   
+abline(v=h,col=1,lwd=lwd,col="gray",lty=2)   
 }
 
 
