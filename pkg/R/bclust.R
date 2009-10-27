@@ -807,8 +807,8 @@ if (horizbar.plot)
 
 
 
-bdiscrim<-function(training, trainingrep.id=NULL, training.labels=NULL, predict=NULL, predict.label=rownames(predict)[1],  effect.family="gaussian",var.select=TRUE,
-transformed.par,priorprob=rep(1,max(trainingrep.id)+1))
+bdiscrim<-function(training, training.id=NULL, training.labels=NULL, predict=NULL, predict.label=rownames(predict)[1],  effect.family="gaussian",var.select=TRUE,
+transformed.par,priorprob=rep(1,max(training.id)+1))
 {
 
 typenomaker<-function(label)
@@ -925,18 +925,18 @@ return(logclassprob)
 }
 
 
-if (is.null(trainingrep.id)){stop("trainingrep.id is missing")}
+if (is.null(training.id)){stop("training.id is missing")}
 if (missing(training)){stop("training data are not specified")}
 if (!is.matrix(training)){stop("data must be a matrix")}
 if (missing(transformed.par)){stop("transformed.par is missing")}
 if (!is.vector(transformed.par)){stop("transformed.par must be a vector")}
-if (!(length(trainingrep.id)==nrow(training))){stop("trainingrep.id mismatches")}
-if ((sum(is.na(training))>0) | (sum(is.na(trainingrep.id))>0) | 
+if (!(length(training.id)==nrow(training))){stop("training.id mismatches")}
+if ((sum(is.na(training))>0) | (sum(is.na(training.id))>0) | 
 (sum(is.na(transformed.par))>0)) stop("NA is not allowed")
 if(!(effect.family%in%c("gaussian","alaplace"))) {stop(
 "in effect.family just the gaussian and the alaplace families are allowed")}
-id.order<-order(trainingrep.id)
-repno<-as.vector(table(trainingrep.id[id.order]))
+id.order<-order(training.id)
+repno<-as.vector(table(training.id[id.order]))
 y<-training[id.order,]
 labels<-training.labels
 if (is.null(labels)){if (is.null(rownames(training))) {labels<-paste(1:length(repno))} else  {if (length(repno)==nrow(training)){labels<-rownames(training)};labels<-labels[id.order]} } else {if (!(length(labels)==length(repno))){warning("label length does not match with the data")}}
