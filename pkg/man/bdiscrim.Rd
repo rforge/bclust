@@ -2,19 +2,19 @@
 \alias{bdiscrim}
 \title{discrimination using a Bayesian linear model}
 \description{This function provides a discrimination method equivalent to the \code{bclust} clustering function.}
-\usage{bdiscrim(training, trainingrep.id, 
+\usage{bdiscrim(training, training.id, 
 training.labels = NULL, predict, 
 predict.label = rownames(predict)[1], 
 effect.family = "gaussian", var.select = TRUE, 
-transformed.par, priorprob = rep(1, max(trainingrep.id) + 1))}
+transformed.par, priorprob = rep(1, max(training.id) + 1))}
 \arguments{
   \item{training}{A numeric matrix of the training set with observations in rows and variables in columns.}
-  \item{trainingrep.id}{A vector consisting of positive integer elements having the
- same length as the number of rows of \code{training}. This vector identifies observations of a class such that the total number of classes is \code{max(trainingrep.id)}. }
+  \item{training.id}{A vector consisting of positive integer elements having the
+ same length as the number of rows of \code{training}. This vector identifies observations of a class such that the total number of classes is \code{max(training.id)}. }
   \item{training.labels}{A vector of strings
  referring to the labels of each class. The length of the
- vector should match to \code{max(trainingrep.id)}. The first element corresponds to the label of the type having the smallest integer value in \code{trainingrep.id}, the second element refers to 
- the label of the type having the second smallest integer in \code{trainingrep.id}, and so on.} 
+ vector should match to \code{max(training.id)}. The first element corresponds to the label of the type having the smallest integer value in \code{training.id}, the second element refers to 
+ the label of the type having the second smallest integer in \code{training.id}, and so on.} 
   \item{predict}{A single discriminating type to be classified to one of the classes, with replications of the discriminating type in rows and variables in columns. The number of variables should be the same as in \code{training}. If it is not specified just the variable and variable-class importances will be calculated.}
   \item{predict.label}{A single string, the label of the discriminating type.}
   \item{effect.family}{Distribution family of the disappearing random components of the model. Choices are "gaussian" or "alaplace"
@@ -24,7 +24,7 @@ transformed.par, priorprob = rep(1, max(trainingrep.id) + 1))}
   \item{transformed.par}{The transformed
  model parameters in a vector. The length of the vector depends on the
  chosen model and the availability of variable selection. The log transformation is supposed to be applied for the variance parameters, the identity for the mean, and the logit for the proportions. The function \link{loglikelihood} can be used to estimate them from the data.}
-  \item{priorprob}{The prior probabilities for each class in a vector. The length of the vector should be the number of classes \code{max(trainingrep.id)} plus one (the prior probability that the predict set
+  \item{priorprob}{The prior probabilities for each class in a vector. The length of the vector should be the number of classes \code{max(training.id)} plus one (the prior probability that the predict set
   raises its own class).  If nothing is specified a uniform discrete prior is considered.}
 }
 \details{
@@ -51,7 +51,7 @@ gaelle.id<-rep(1:13,rep(4,13)) # all mutants have 4 replicates
 gaelle.lab<-c("d172","d263","isa2",
 "sex4","dpe2","mex1","sex3","pgm","sex1","WsWT","tpt","RLDWT","ke103")
 
-gaelle.bdiscrim<-bdiscrim(gaelle[-(1:3),],trainingrep.id=gaelle.id,
+gaelle.bdiscrim<-bdiscrim(gaelle[-(1:3),],training.id=gaelle.id,
 training.labels=gaelle.lab,transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68),predict=gaelle[1:3,], predict.label="ColWT")
 # classify ColWT to one of the types
 
