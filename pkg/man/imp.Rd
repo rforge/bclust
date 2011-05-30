@@ -23,9 +23,12 @@ imp(x)
 \examples{
 data(gaelle)
 
-gaelle.id<-rep(1:14,c(3,rep(4,13))) # first 3 rows replication of ColWT , the other mutants each 
+gaelle.id<-rep(1:14,c(3,rep(4,13))) 
+# first 3 rows replication of ColWT, 4 for the rest
 
-gaelle.bclust<-bclust(gaelle,rep.id=gaelle.id,transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68),var.select=TRUE)
+gaelle.bclust<-bclust(gaelle,rep.id=gaelle.id,
+transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68),
+var.select=TRUE)
 
 gaelle.imp<-imp(gaelle.bclust)
 

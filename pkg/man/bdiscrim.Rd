@@ -38,7 +38,7 @@ We assumed a Bayesian linear model for classification being \deqn{y_{vctr}=\mu+\
 cluster \eqn{c}, type \eqn{t}, and replicate \eqn{r}; \eqn{\eta_{vct}}{h_{vct}}
 is the between-type error, \eqn{\theta_{vc}}{t_{vc}} is the disappearing random component controlled by the Bernoulli variables \eqn{\delta_v}{d_{v}} with success probability \eqn{q} and \eqn{\gamma_{vc}}{g_{vc}} with 
 success probability \eqn{p}; and \eqn{\varepsilon_{vctr}}{e_{vctr}} is the between-replicate error. The function computes the posterior probability that the \code{predict} data share the same \eqn{\theta_{vc}}. 
-This function also consideres that the \code{predict} data may arise its own class, for more details see the package website \url{http://bclust.probstat.ch} and documents there in.}
+This function also consideres that the \code{predict} data may arise its own class.}
 \value{
 \item{probs}{The posterior probabilities in a matrix with one row.}
 \item{var}{The variable importances, each being a log Bayes factor.}
@@ -51,8 +51,10 @@ gaelle.id<-rep(1:13,rep(4,13)) # all mutants have 4 replicates
 gaelle.lab<-c("d172","d263","isa2",
 "sex4","dpe2","mex1","sex3","pgm","sex1","WsWT","tpt","RLDWT","ke103")
 
-gaelle.bdiscrim<-bdiscrim(gaelle[-(1:3),],training.id=gaelle.id,
-training.labels=gaelle.lab,transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68),predict=gaelle[1:3,], predict.label="ColWT")
+gaelle.bdiscrim<-bdiscrim(gaelle[-(1:3),],
+training.id=gaelle.id,training.labels=gaelle.lab,
+transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68),
+predict=gaelle[1:3,], predict.label="ColWT")
 # classify ColWT to one of the types
 
 par(mfrow=c(1,1)) #retreive graphic defaults 
@@ -64,17 +66,21 @@ ColWT.prob<-as.vector(gaelle.bdiscrim$probs)
 bp <- barplot(ColWT.prob,ylim=c(0,1)) #plot bars
 title("ColWT Discrimination")
 text(bp, par("usr")[3]-0.05, srt = 90,adj=1,
-labels = colnames(gaelle.bdiscrim$probs), xpd = TRUE) #plot variable labels
+labels = colnames(gaelle.bdiscrim$probs), xpd = TRUE) 
+#plot variable labels
+
 mtext(1, text = "Mutant", line = 4,cex=1.5)# add x axis label
 mtext(2, text = "Probability", line = 3,cex=1.2)# add y axis labels
-abline(h=1/length(ColWT.prob)) # draw plot a as a reference line prior probabilities line
+abline(h=1/length(ColWT.prob)) 
+# draw plot a as a reference line prior probabilities line
 
 
 
 # plots sorted discrimination probabilities
 par(mfrow=c(1,1)) #retreive graphic defaults 
 par(mar = c(5, 4, 4, 2) + 0.1) # leave some space for labels
-bp <- barplot(sort(ColWT.prob,decreasing=TRUE),ylim=c(0,1),col=heat.colors(length(ColWT.prob))) #plot bars
+bp <- barplot(sort(ColWT.prob,decreasing=TRUE),ylim=c(0,1),
+col=heat.colors(length(ColWT.prob))) #plot bars
 text(bp, par("usr")[3]-0.05, srt = 90,adj=1,
 labels = colnames(gaelle.bdiscrim$probs)[order(ColWT.prob,decreasing=TRUE)], 
 xpd = TRUE) #plot variable labels

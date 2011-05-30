@@ -43,8 +43,7 @@ operation system command line. If you use Linux, open a console and type
 We assumed a Bayesian linear model for clustering being \deqn{y_{vctr}=\mu+\eta_{vct}+\delta_v \gamma_{vc}\theta_{vc}+\varepsilon_{vctr}}{y_{vctr}=m+h_{vct}+d_{v}*g_{vc}*t_{vc}+e_{vctr}} where \eqn{y_{vctr}} is the available data on variable \eqn{v}, 
 cluster \eqn{c}, clustering type \eqn{t}, and replicate \eqn{r}; \eqn{\eta_{vct}}{h_{vct}}
 is the between-type error, \eqn{\theta_{vc}}{t_{vc}} is the disappearing random component controlled by the Bernoulli variables \eqn{\delta_v}{d_{v}} with success probability \eqn{q} and \eqn{\gamma_{vc}}{g_{vc}} with 
-success probability \eqn{p}; and \eqn{\varepsilon_{vctr}}{e_{vctr}} is the between-replicate error. The types inside a cluster share the same \eqn{\theta_{vc}}{t_{vc}}, but may arise with a different  \eqn{\eta_{vct}}{h_{vct}}, 
-for more details see the package website \url{http://bclust.probstat.ch} and documents there in.}
+success probability \eqn{p}; and \eqn{\varepsilon_{vctr}}{e_{vctr}} is the between-replicate error. The types inside a cluster share the same \eqn{\theta_{vc}}{t_{vc}}, but may arise with a different  \eqn{\eta_{vct}}{h_{vct}}.}
 
 \value{
 	\item{data}{The data matrix, reordered according to \code{rep.id}.}
@@ -71,22 +70,30 @@ for more details see the package website \url{http://bclust.probstat.ch} and doc
 data(gaelle)
 
 # unreplicated clustering
-gaelle.bclust<-bclust(x=gaelle,transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68)) 
+gaelle.bclust<-bclust(x=gaelle,
+transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68)) 
 par(mfrow=c(2,1))
 plot(as.dendrogram(gaelle.bclust))
 abline(h=gaelle.bclust$cut)
-plot(gaelle.bclust$clust.number,gaelle.bclust$logposterior,xlab="Number of clusters",ylab="Log posterior",type="b")
+plot(gaelle.bclust$clust.number,gaelle.bclust$logposterior,
+xlab="Number of clusters",ylab="Log posterior",type="b")
 abline(h=max(gaelle.bclust$logposterior))
 
 #replicated clustering
-gaelle.id<-rep(1:14,c(3,rep(4,13))) # first 3 rows replication of ColWT , the other mutants each 
-gaelle.lab<-c("ColWT","d172","d263","isa2",
-"sex4","dpe2","mex1","sex3","pgm","sex1","WsWT","tpt","RLDWT","ke103")
+gaelle.id<-rep(1:14,c(3,rep(4,13))) 
+# first 3 rows replication of ColWT 
+# 4 replications for the others
 
-gaelle.bclust<-bclust(gaelle,rep.id=gaelle.id,labels=gaelle.lab,transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68))
+gaelle.lab<-c("ColWT","d172","d263","isa2",
+"sex4","dpe2","mex1","sex3","pgm","sex1",
+"WsWT","tpt","RLDWT","ke103")
+
+gaelle.bclust<-bclust(gaelle,rep.id=gaelle.id,labels=gaelle.lab,
+transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68))
 plot(as.dendrogram(gaelle.bclust))
 abline(h=gaelle.bclust$cut)
-plot(gaelle.bclust$clust.number,gaelle.bclust$logposterior,xlab="Number of clusters",ylab="Log posterior",type="b")
+plot(gaelle.bclust$clust.number,gaelle.bclust$logposterior,
+xlab="Number of clusters",ylab="Log posterior",type="b")
 abline(h=max(gaelle.bclust$logposterior))
 }
 

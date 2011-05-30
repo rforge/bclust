@@ -47,12 +47,12 @@ echo $contents; } ?>
 <center>
 <h1>bclust R-Package</h1>
 
-<a href="http://bclust.probstat.ch"><img src="met-dendrovsG.png" width="774" height="544" border="3" alt=""></a>
+<a href="http://bclust.r-forge.r-project.org"><img src="met-dendrovsG.png" width="774" height="544" border="3" alt=""></a>
 </center>
 
 
 <p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
-<p> The <strong>project description and documentation page</strong> you can find <a href="http://bclust.probstat.ch"><strong>here</strong></a>. </p>
+<p> The <strong>project description and documentation page</strong> you can find <a href="http://cran.r-project.org/web/packages/bclust/index.html"><strong>here</strong></a>. </p>
 
 </body>
 </html>

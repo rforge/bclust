@@ -20,7 +20,8 @@ xlab.cex = 1, sort = FALSE, ...)
 \seealso{\link{imp}, \link{dptplot}, \link{ditplot}.}
 \examples{
 data(gaelle)
-gaelle.bclust<-bclust(gaelle,transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68))
+gaelle.bclust<-bclust(gaelle,
+transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68))
 gaelle.imp<-imp(gaelle.bclust)
 viplot(varimp=gaelle.imp$var)
 # solid plot 

@@ -6,11 +6,13 @@ The function attaches a coloured horizontal dendrogram to the left side of a pro
 \usage{
 dptplot(x, scale = 1, xlab = colnames(x$data), ylab = x$labels, 
 xlab.cex = 1, ylab.cex = 1, dendrogram.lwd = 1, 
-dendrogram.size = 2, xlab.mar = 3, ylab.mar = 3, horizbar.plot = FALSE, 
-horizbar.col = rev(c(heat.colors(5)[-4], "white")), horizbar.distance = 4,  
-varimp = rep(0, ncol(x$data)), horizbar.size = 0.5, vertbar = NULL, 
-vertbar.col = rainbow(max(vertbar)), teeth.size = 0.25, plot.width = 10)}
-%- maybe also 'usage' for other objects documented here.
+dendrogram.size = 2, xlab.mar = 3, ylab.mar = 3, 
+horizbar.plot = FALSE, 
+horizbar.col = rev(c(heat.colors(5)[-4], "white")), 
+horizbar.distance = 4,  varimp = rep(0, ncol(x$data)), 
+horizbar.size = 0.5, vertbar = NULL, 
+vertbar.col = rainbow(max(vertbar)), 
+teeth.size = 0.25, plot.width = 10)}
 \arguments{
   \item{x}{A \code{bclustvs} object.}
   \item{scale}{A positive value. If the profile plots are too noisy or too flat, adjust the scaling factor.}
@@ -44,22 +46,28 @@ Kass and Raftery (1995) Bayes Factors, Journal of the American Statistical Assoc
 \examples{
 data(gaelle)
 
-gaelle.id<-rep(1:14,c(3,rep(4,13))) # first 3 rows replication of ColWT , the other mutants each
+gaelle.id<-rep(1:14,c(3,rep(4,13))) 
+# first 3 rows replication of ColWT, 4 for the rest
+
 gaelle.lab<-c("ColWT","d172","d263","isa2",
 "sex4","dpe2","mex1","sex3","pgm","sex1","WsWT","tpt","RLDWT","ke103")
-gaelle.bclust<-bclust(gaelle,rep.id=gaelle.id,labels=gaelle.lab,transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68))
-dptplot(gaelle.bclust,scale=5,varimp=imp(gaelle.bclust)$var,horizbar.plot=TRUE)
+gaelle.bclust<-bclust(gaelle,rep.id=gaelle.id,labels=gaelle.lab,
+transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68))
+dptplot(gaelle.bclust,scale=5,varimp=imp(gaelle.bclust)$var,
+horizbar.plot=TRUE)
 #replicated clustering
 
 
-gaelle.bclust<-bclust(gaelle,transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68))
-dptplot(gaelle.bclust,scale=10,varimp=imp(gaelle.bclust)$var,horizbar.plot=TRUE,
-plot.width=5,horizbar.size=0.2,ylab.mar=4)
+gaelle.bclust<-bclust(gaelle,
+transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68))
+dptplot(gaelle.bclust,scale=10,varimp=imp(gaelle.bclust)$var,
+horizbar.plot=TRUE,plot.width=5,horizbar.size=0.2,ylab.mar=4)
 #unreplicated clustering
 
 wildtype<-rep(1,55) #initiate a vector
 wildtype[c(1:3,48:51,40:43)]<-2 #associate 2 to wildtypes
-dptplot(gaelle.bclust,scale=10,varimp=imp(gaelle.bclust)$var,horizbar.plot=TRUE,
-plot.width=5,horizbar.size=0.2,vertbar=wildtype,vertbar.col=c("white","violet"),ylab.mar=4)
+dptplot(gaelle.bclust,scale=10,varimp=imp(gaelle.bclust)$var,
+horizbar.plot=TRUE,plot.width=5,horizbar.size=0.2,vertbar=wildtype,
+vertbar.col=c("white","violet"),ylab.mar=4)
 
 }

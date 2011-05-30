@@ -1,6 +1,6 @@
 \name{bclustvs}
 \alias{bclustvs}
-\title{bclustvs (Bayesian CLUSTering with Variable Selection) is an object}
+\title{bclustvs (Bayesian CLUSTering with Variable Selection) is a class}
 \description{The \code{bclustvs} object can be regarded as a Bayesian extension of the \code{hclust} object that additionally contains information of a Bayesian dendrogram. 
 You can convert any \code{bclustvs} object to a \code{dendrogram} object using \code{as.dendrogram}.}
 \value{
