@@ -17,7 +17,7 @@ transformed.par, priorprob = rep(1, max(training.id) + 1))}
  the label of the type having the second smallest integer in \code{training.id}, and so on.} 
   \item{predict}{A single discriminating type to be classified to one of the classes, with replications of the discriminating type in rows and variables in columns. The number of variables should be the same as in \code{training}. If it is not specified just the variable and variable-class importances will be calculated.}
   \item{predict.label}{A single string, the label of the discriminating type.}
-  \item{effect.family}{Distribution family of the disappearing random components of the model. Choices are "gaussian" or "alaplace"
+  \item{effect.family}{Distribution family of the disappearing random components of the model. The choices are "gaussian" or "alaplace"
  allowing Gaussian or asymmetric Laplace family, respectively.}
   \item{var.select}{A logical value, \code{TRUE} for fitting models that define
    a spike-and-slab distribution in variable level and allows Bayesian variable selection.}
@@ -31,25 +31,31 @@ transformed.par, priorprob = rep(1, max(training.id) + 1))}
 The function calls internal \code{C} functions depending on the chosen
 model. The C-stack of the system may overflow if you have a large
 dataset. You may need to adjust the stack before running \code{R} using your
-operational system command line. If you use Linux open console type
-\code{>ulimit -s unlimited}, then run \code{R} in the same console. 
+operational system command line.  
 
 We assumed a Bayesian linear model for classification being \deqn{y_{vctr}=\mu+\eta_{vct}+\delta_v \gamma_{vc}\theta_{vc}+\varepsilon_{vctr}}{y_{vctr}=m+h_{vct}+d_{v}*g_{vc}*t_{vc}+e_{vctr}} where \eqn{y_{vctr}} is the available data on variable \eqn{v}, 
 cluster \eqn{c}, type \eqn{t}, and replicate \eqn{r}; \eqn{\eta_{vct}}{h_{vct}}
 is the between-type error, \eqn{\theta_{vc}}{t_{vc}} is the disappearing random component controlled by the Bernoulli variables \eqn{\delta_v}{d_{v}} with success probability \eqn{q} and \eqn{\gamma_{vc}}{g_{vc}} with 
 success probability \eqn{p}; and \eqn{\varepsilon_{vctr}}{e_{vctr}} is the between-replicate error. The function computes the posterior probability that the \code{predict} data share the same \eqn{\theta_{vc}}. 
-This function also consideres that the \code{predict} data may arise its own class.}
+This function also consideres that the \code{predict} data may arise its own class. For more details see Vahid Partovi Nia and Anthony C. Davison (2012)}
+\references{
+Vahid Partovi Nia and Anthony C. Davison (2012). High-Dimensional Bayesian Clustering with Variable Selection: The R Package bclust. Journal of Statistical Software, 47(5), 1-22. URL http://www.jstatsoft.org/v47/i05/
+}
+
+
 \value{
 \item{probs}{The posterior probabilities in a matrix with one row.}
 \item{var}{The variable importances, each being a log Bayes factor.}
 \item{varclass}{The variable-class importances, each being a log Bayes factor.}
 }
+
 \seealso{\link{loglikelihood}, \link{bclust}, \link{profileplot}.}
 \examples{
 data(gaelle)
 gaelle.id<-rep(1:13,rep(4,13)) # all mutants have 4 replicates
 gaelle.lab<-c("d172","d263","isa2",
-"sex4","dpe2","mex1","sex3","pgm","sex1","WsWT","tpt","RLDWT","ke103")
+"sex4","dpe2","mex1","sex3","pgm","sex1","WsWT",
+"tpt","RLDWT","ke103")
 
 gaelle.bdiscrim<-bdiscrim(gaelle[-(1:3),],
 training.id=gaelle.id,training.labels=gaelle.lab,
@@ -66,11 +72,14 @@ ColWT.prob<-as.vector(gaelle.bdiscrim$probs)
 bp <- barplot(ColWT.prob,ylim=c(0,1)) #plot bars
 title("ColWT Discrimination")
 text(bp, par("usr")[3]-0.05, srt = 90,adj=1,
-labels = colnames(gaelle.bdiscrim$probs), xpd = TRUE) 
+labels = colnames(gaelle.bdiscrim$probs), 
+xpd = TRUE) 
 #plot variable labels
 
-mtext(1, text = "Mutant", line = 4,cex=1.5)# add x axis label
-mtext(2, text = "Probability", line = 3,cex=1.2)# add y axis labels
+mtext(1, text = "Mutant", line = 4,cex=1.5)
+# add x axis label
+mtext(2, text = "Probability", line = 3,cex=1.2)
+# add y axis labels
 abline(h=1/length(ColWT.prob)) 
 # draw plot a as a reference line prior probabilities line
 
@@ -82,7 +91,8 @@ par(mar = c(5, 4, 4, 2) + 0.1) # leave some space for labels
 bp <- barplot(sort(ColWT.prob,decreasing=TRUE),ylim=c(0,1),
 col=heat.colors(length(ColWT.prob))) #plot bars
 text(bp, par("usr")[3]-0.05, srt = 90,adj=1,
-labels = colnames(gaelle.bdiscrim$probs)[order(ColWT.prob,decreasing=TRUE)], 
+labels = colnames(gaelle.bdiscrim$probs)
+[order(ColWT.prob,decreasing=TRUE)], 
 xpd = TRUE) #plot variable labels
 mtext(1, text = "Mutant", line = 4,cex=1.5)# add x axis label
 mtext(2, text = "Probability", line = 3,cex=1.2)# add y axis labels
@@ -107,7 +117,8 @@ varcol[varimp>0]<-1
 
 var.order<-order(gaelle.bdiscrim$var,decreasing=TRUE)
 profileplot(x=gaelle[-(1:3),var.order],rep.id=gaelle.id,
-labels=gaelle.lab,scale=10,blob.matrix=blob,ylab.mar=5,xlab.mar=7)
+labels=gaelle.lab,scale=10,blob.matrix=blob,ylab.mar=5,
+xlab.mar=7)
 #plot var class importance on profile plot using blobs
 # and sort variables according to variable importance values
 

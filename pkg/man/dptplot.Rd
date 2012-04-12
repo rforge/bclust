@@ -27,8 +27,7 @@ teeth.size = 0.25, plot.width = 10)}
 \item{horizbar.plot}{A logical value. If \code{TRUE} a horizontal bar is plotted according to the \code{varimp}.}
   \item{horizbar.col}{Colours of the horizontal bar.}
   \item{horizbar.distance}{A positive value, the distance between the horizontal bar and the profile plot.}
-    \item{varimp}{A numerical vector denoting the importance of variables. We propose to use \code{imp} function to get the values. If it is specified, the variables will be ordered respect to this vector.
-  You may plot the variables with any arbitrary ordering of variables using this argument, then remember to keep \code{horizbar.plot=FALSE}.}
+    \item{varimp}{A numerical vector denoting the importance of variables. We propose to use \code{imp} function to get the values. If it is specified, the variables will be ordered respect to this vector.}
   \item{horizbar.size}{A positive value, the size of the horizontal bar.}
   \item{vertbar}{A positive integer vector that may be used to draw an additional vertical bar on the right of the teethplot. This may be helpful to represent another optional grouping on the data.}
   \item{vertbar.col}{The colours used to plot the additional vertical bar.}

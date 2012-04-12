@@ -4,7 +4,8 @@
 \description{This is a handy function to plot a \code{bclustvs} object.  The function attaches a coloured horizontal dendrogram to the left side of an image plot with the optimal grouping 
 highlighted by a teethplot on the right.}
 \usage{
-ditplot(x, xlab = colnames(x$data), ylab = x$labels, xlab.cex = 1, 
+ditplot(x, xlab = colnames(x$data), 
+ylab = x$labels, xlab.cex = 1, 
 ylab.cex = 1, dendrogram.lwd = 1, dendrogram.size = 2, 
 xlab.mar = 3, ylab.mar = 3, image.col = rainbow(20), 
 horizbar.plot = FALSE, 
@@ -28,16 +29,14 @@ teeth.size = 0.25, plot.width = 10)
   \item{horizbar.plot}{A logical value, if \code{TRUE} a horizontal bar is plotted according to categorised \code{varimp}.}
   \item{horizbar.col}{Colours used for the horizontal bar.}
   \item{horizbar.distance}{A positive value, the distance between the horizbar and the image plot.}
-  \item{varimp}{A numerical vector denoting the importance of variables. We propose to use the \code{imp} function to compute these values. If it is specified, the variables will be ordered respect to this vector.
-  You may plot the variables with any arbitrary ordering of variables using this argument, then remember to keep \code{horizbar.plot=FALSE}.}
+  \item{varimp}{A numerical vector denoting the importance of variables. We propose to use the \code{imp} function to compute these values. If it is specified, the variables will be ordered respect to this vector.}
   \item{horizbar.size}{A positive value, the size of the horizontal bar.}
   \item{vertbar}{A positive integer vector that may be used to draw an additional vertical bar on the right of the teeth plot. This may be helpful to represent another optional grouping on the data.}
   \item{vertbar.col}{The colours used to plot the additional vertical bar.}
   \item{teeth.size}{A positive value, the size of the teeth plot.}
   \item{plot.width}{A positive value, the width of the whole plot. If the plot region is unbalanced in width and height, adjust this value.}
   }
-\details{The \code{varimp} is assumed to be log Bayes factors and therefore categorised according to Kass and Raftery (1995) for a better visualisation. If \code{varimp} is not 
-result of the \code{imp} function, keep \code{horizbar.plot=FALSE}.}
+\details{The \code{varimp} is assumed to be log Bayes factors and therefore categorised according to Kass and Raftery (1995) for a better visualisation. }
 \references{
 Kass and Raftery (1995) Bayes Factors, Journal of the American Statistical Association, Vol. 90, pp. 773--795.
 }

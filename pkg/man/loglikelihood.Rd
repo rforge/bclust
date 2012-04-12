@@ -34,8 +34,8 @@ always check the convergence of the optimisation algorithm. The
 asymmetric Laplace model, \code{effect.family="alaplace"}, is often more
 difficult to optimise than \code{effect.family="gaussian"}.
 
-If your data is standardised (having general mean zero and general variance one) the
-\code{loglikelihood} function is usually maximised over values between -5 and 5.
+If data are standardised (having general mean zero and general variance one) the
+log likelihood function is usually maximised over values between -5 and 5.
 
 The \code{transformed.par} is a vector of transformed model parameters
 having length 5 up to 7 depending on the chosen model.
@@ -74,7 +74,11 @@ the disappearing random component which is decomposed to
 \eqn{\sigma^2_{\theta_L}}{s2_tL}, \eqn{\sigma^2_{\theta_R}}{s2_tR} the left and the right tail
 variances if the model is asymmetric Laplace; \eqn{\mu}{m} is the general
 level; \eqn{p} is the proportion of active variable-cluster (or variable-class) combinations, and
-\eqn{q} is the proportion of the active variables. }
+\eqn{q} is the proportion of the active variables. For more details see Vahid Partovi Nia and Anthony C. Davison (2012)}
+
+\references{
+Vahid Partovi Nia and Anthony C. Davison (2012). High-Dimensional Bayesian Clustering with Variable Selection: The R Package bclust. Journal of Statistical Software, 47(5), 1-22. URL http://www.jstatsoft.org/v47/i05/
+}
 
 \seealso{
 	\link{bclust},\link{bdiscrim}, \link{meancss}.

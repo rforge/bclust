@@ -14,12 +14,12 @@ var.select=TRUE,transformed.par,labels=NULL)
 
 \arguments{
   \item{x}{A numeric matrix, with clustering individuals in rows
-    and the variables in columns.}
+    and variables in columns.}
  
 \item{rep.id}{A vector consisting of positive integer elements having the
  same length as the number of rows of \code{x}. This vector identifies replicates of a clustering type such that the total number of clustering types is \code{max(rep.id)}. If nothing is declared the function
  presupposes that the data are unreplicated, that is each row of \code{x} is a clustering type.}
-\item{effect.family}{Distribution family of the disappearing random components. Choices are "gaussian" or "alaplace"
+\item{effect.family}{Distribution family of the disappearing random components. The choices are "gaussian" or "alaplace"
  allowing Gaussian or asymmetric Laplace family, respectively. }
 
  \item{var.select}{A logical value, \code{TRUE} for fitting models that define
@@ -38,12 +38,18 @@ var.select=TRUE,transformed.par,labels=NULL)
 model. The C-stack of the system may overflow if you have a large
 dataset. You may need to adjust the stack before running \code{R} using your
 operation system command line. If you use Linux, open a console and type
-\code{>ulimit -s unlimited}, then run \code{R} in the same console. The Microsoft Windows users don't need to increase the stack size.
+\code{>}ulimit -s unlimited and then run \code{R} in the same console. The Microsoft Windows users don't need to increase the stack size.
 
 We assumed a Bayesian linear model for clustering being \deqn{y_{vctr}=\mu+\eta_{vct}+\delta_v \gamma_{vc}\theta_{vc}+\varepsilon_{vctr}}{y_{vctr}=m+h_{vct}+d_{v}*g_{vc}*t_{vc}+e_{vctr}} where \eqn{y_{vctr}} is the available data on variable \eqn{v}, 
 cluster \eqn{c}, clustering type \eqn{t}, and replicate \eqn{r}; \eqn{\eta_{vct}}{h_{vct}}
 is the between-type error, \eqn{\theta_{vc}}{t_{vc}} is the disappearing random component controlled by the Bernoulli variables \eqn{\delta_v}{d_{v}} with success probability \eqn{q} and \eqn{\gamma_{vc}}{g_{vc}} with 
-success probability \eqn{p}; and \eqn{\varepsilon_{vctr}}{e_{vctr}} is the between-replicate error. The types inside a cluster share the same \eqn{\theta_{vc}}{t_{vc}}, but may arise with a different  \eqn{\eta_{vct}}{h_{vct}}.}
+success probability \eqn{p}; and \eqn{\varepsilon_{vctr}}{e_{vctr}} is the between-replicate error. The types inside a cluster share the same \eqn{\theta_{vc}}{t_{vc}}, but may arise with a different  \eqn{\eta_{vct}}{h_{vct}}.
+For more details see Vahid Partovi Nia and Anthony C. Davison (2012)}
+
+\references{
+Vahid Partovi Nia and Anthony C. Davison (2012). High-Dimensional Bayesian Clustering with Variable Selection: The R Package bclust. Journal of Statistical Software, 47(5), 1-22. URL http://www.jstatsoft.org/v47/i05/
+}
+
 
 \value{
 	\item{data}{The data matrix, reordered according to \code{rep.id}.}

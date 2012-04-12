@@ -31,8 +31,10 @@ transformed.par=c(-1.84,-0.99,1.63,0.08,-0.16,-1.68),var.select=TRUE)
 #start plotting
 layout(matrix(c(1,2),1,2,byrow=TRUE), c(9,1),10, respect=TRUE) 
 # divide plot space into two unequal parts
-par(mar=c(0,0,0,2)) # preserve some space for labels in dendrogram plot
-plot(as.dendrogram(gaelle.bclust),horiz=TRUE,yaxs="i") #plot the dendrogram
+par(mar=c(0,0,0,2)) 
+# preserve some space for labels in dendrogram plot
+plot(as.dendrogram(gaelle.bclust),
+horiz=TRUE,yaxs="i") #plot the dendrogram
 abline(v=gaelle.bclust$cut) 
 #show the optimal allocation by a line on the dendrogram
 par(mar=c(0,0,0,0)) # we need no space for teeth plot

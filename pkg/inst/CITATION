@@ -1,0 +1,22 @@
+
+citHeader("To cite bclust in publications use:")
+
+citEntry(entry = "Article",
+  title        = "High-Dimensional Bayesian Clustering with Variable Selection: The {R} Package {bclust}",
+  author       = personList(as.person("Vahid Partovi Nia"),
+                   as.person("Anthony C. Davison")),
+  journal      = "Journal of Statistical Software",
+  year         = "2012",
+  volume       = "47",
+  number       = "5",
+  pages        = "1--22",
+  url          = "http://www.jstatsoft.org/v47/i05/",
+
+  textVersion  =
+  paste("Vahid Partovi Nia, Anthony C. Davison (2012).",
+        "High-Dimensional Bayesian Clustering with Variable Selection: The R Package bclust.",
+        "Journal of Statistical Software, 47(5), 1-22.",
+        "URL http://www.jstatsoft.org/v47/i05/.")
+)
+
+

@@ -36,7 +36,7 @@ A positive integer vector referring to replication of a subject such that the to
   \item{profile.col}{Colours that you may used to plot each profile.
 }
   \item{blob.matrix}{An integer matrix denoting where to plot a colour blob and which colour should be used in which location. 
-  The number of rows of this matrix should be \code{max(rep.id)} and the number of columns should be \code{ncol(x)}.
+  The number of rows of this matrix should be max( rep.id ) and the number of columns should be \code{ncol(x)}.
   The value 0 plots no blobs, value 1 refers to plotting a blob with a 
   colour specified in \code{blob.col}.
 }
