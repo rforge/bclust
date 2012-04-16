@@ -2037,7 +2037,7 @@ logmarg1dataG (yclust, nrowy, ncoly, repnoclust, nrepnoclust, typenoclust, ntype
 		}
 for (i=1;i<ntypeno;i++)
 	{
-	printf("%d/%d\n",(i+1),(ntypeno));
+	Rprintf("%d/%d\n",(i+1),(ntypeno));
 		fastdistmatrixG( yclust, nrowy,  ncoly, repnoclust, nrepnoclust, typenoclust, ntypenoclust, 
 		l0clust,lclust,sumlclust,theta, minvalue, minindex);
 		l0arrange(l0clust,ntypenoclust,ncoly,asint(minindex[0]),asint(minindex[1]),l0result);
@@ -2133,7 +2133,7 @@ matsum(l1clust,(ntypenoclust*ncoly), ntypenoclustpointer ,1,suml1clust);
 
 for (i=1;i<ntypeno;i++)
 	{
-		printf("%d/%d\n",(i+1),(ntypeno));
+		Rprintf("%d/%d\n",(i+1),(ntypeno));
 
                fastdistmatrixvsG(yclust, nrowy, ncoly, repnoclust, nrepnoclust, typenoclust, ntypenoclust,
 		l0clust, suml0clust, l1clust, suml1clust, theta,minvalue,minindex);	
@@ -2213,7 +2213,7 @@ matsum(l1clust,(ntypenoclust*ncoly), ntypenoclustpointer ,1,suml1clust);
 
 for (i=1;i<ntypeno;i++)
 	{
-		printf("%d/%d\n",(i+1),(ntypeno));
+		Rprintf("%d/%d\n",(i+1),(ntypeno));
 
                fastdistmatrixvsAL(yclust, nrowy, ncoly, repnoclust, nrepnoclust, typenoclust, ntypenoclust,
 		l0clust, suml0clust, l1clust, suml1clust, theta,minvalue,minindex);	
@@ -2327,7 +2327,7 @@ logmarg1dataAL (yclust, nrowy, ncoly, repnoclust, nrepnoclust, typenoclust, ntyp
 		}
 for (i=1;i<ntypeno;i++)
 	{
-		printf("%d/%d\n",(i+1),(ntypeno));
+		Rprintf("%d/%d\n",(i+1),(ntypeno));
 
 		fastdistmatrixAL( yclust, nrowy,  ncoly, repnoclust, nrepnoclust, typenoclust, ntypenoclust, 
 		l0clust,lclust,sumlclust,theta, minvalue, minindex);
