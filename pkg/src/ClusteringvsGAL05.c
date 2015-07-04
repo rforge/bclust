@@ -2664,6 +2664,7 @@ void RlogprobabilitycalculatorG(double *y, int *nrowy, int *ncoly, double *repno
 	}
 
 	
+/*
 int rmultinomial (double logprob[], int nlogprob)
 	{
 		int rnd[nlogprob],i;
@@ -2672,8 +2673,8 @@ int rmultinomial (double logprob[], int nlogprob)
 		for (i=0;i<nlogprob;i++)
 			{
 			logprobadded[i]=logprob[i]-maxlogprob;
-/*			printf("\n normalized logprob of %d is %d", (i+1), (int)(logprobadded[i]));
-*/			}
+			printf("\n normalized logprob of %d is %d", (i+1), (int)(logprobadded[i]));
+			}
 
 		for (i=0;i<nlogprob;i++)
 			{
@@ -2684,8 +2685,8 @@ int rmultinomial (double logprob[], int nlogprob)
 		for (i=0;i<nlogprob;i++)
 			{
 			prob[i]=exp(logprobadded[i])/sumprob;
-/*			printf("\nI sample from %d with percent %d", (i+1), (int)(100*prob[i]));
-*/			}
+			printf("\nI sample from %d with percent %d", (i+1), (int)(100*prob[i]));
+			}
 		
 		rmultinom(1,prob,nlogprob,rnd);
 		for (i=0;i<nlogprob;i++)
@@ -2693,7 +2694,7 @@ int rmultinomial (double logprob[], int nlogprob)
 		if (rnd[i]>0) {return (i+1);}
 		}
 	}
-
+*/
 		
 	
 void relabel(double label[], int nlabel,double *result)
@@ -2717,6 +2718,7 @@ void relabel(double label[], int nlabel,double *result)
 	}
 	
 
+/*
 void RmcmcG(double *y, int *nrowy, int *ncoly, double *repno, 
 	int *nrepno, double *label, int *nlabel, double *theta, int *mciter,double *result)
 	{
@@ -2727,12 +2729,12 @@ void RmcmcG(double *y, int *nrowy, int *ncoly, double *repno,
 		randpermute(*nrepno, randindex);
 		for (j=0;j<*nrepno;j++)
 			{
-/*			printf("\n\ncurrent label is\n");
+			printf("\n\ncurrent label is\n");
 			for (k=0;k<*nrepno;k++)
 				{
 				printf("  %d  ",(int)label[k]);
 				}
-*/			logprobabilitycalculatorG(y, *nrowy, *ncoly, repno, *nrepno, label, *nlabel, randindex[j], 
+			logprobabilitycalculatorG(y, *nrowy, *ncoly, repno, *nrepno, label, *nlabel, randindex[j], 
 				theta, changedlabel, nchangedlabel, logprob);
 			sumprob=0;
 			for (k=1;k<nchangedlabel[0];k++)
@@ -2743,14 +2745,14 @@ void RmcmcG(double *y, int *nrowy, int *ncoly, double *repno,
 				{
 					prob[k-1]=exp(logprob[k-1])/sumprob;
 				}
-/*			for (k=1;k<=nchangedlabel[0];k++)
+			for (k=1;k<=nchangedlabel[0];k++)
 				{
 				printf("\n position %d can get %d with logprobability %d",randindex[j], k, (int)(logprob[k-1]) );
 				}
-*/			
+			
 			mysample=rmultinomial(logprob,nchangedlabel[0]);
-/*			printf("\nmysample for position %d is  %d had logprob %d \n",randindex[j], mysample, (int)logprob[(mysample-1)] );
-*/			
+			printf("\nmysample for position %d is  %d had logprob %d \n",randindex[j], mysample, (int)logprob[(mysample-1)] );
+
 			label[randindex[j]-1]=mysample;
 			relabel(label,*nlabel ,helplabel);
 			for (k=0;k<*nrepno;k++)
@@ -2763,7 +2765,7 @@ void RmcmcG(double *y, int *nrowy, int *ncoly, double *repno,
 		}
 	}
 
-	
+*/				
 	
 	
 	
@@ -2780,7 +2782,7 @@ void RmcmcG(double *y, int *nrowy, int *ncoly, double *repno,
 
 
 
-
+/*
 void RmcmcAL(double *y, int *nrowy, int *ncoly, double *repno, 
 	int *nrepno, double *label, int *nlabel, double *theta, int *mciter,double *result)
 	{
@@ -2791,12 +2793,12 @@ void RmcmcAL(double *y, int *nrowy, int *ncoly, double *repno,
 		randpermute(*nrepno, randindex);
 		for (j=0;j<*nrepno;j++)
 			{
-/*			printf("\n\ncurrent label is\n");
+			printf("\n\ncurrent label is\n");
 			for (k=0;k<*nrepno;k++)
 				{
 				printf("  %d  ",(int)label[k]);
 				}
-*/			logprobabilitycalculatorAL(y, *nrowy, *ncoly, repno, *nrepno, label, *nlabel, randindex[j], 
+			logprobabilitycalculatorAL(y, *nrowy, *ncoly, repno, *nrepno, label, *nlabel, randindex[j], 
 				theta, changedlabel, nchangedlabel, logprob);
 			sumprob=0;
 			for (k=1;k<nchangedlabel[0];k++)
@@ -2807,14 +2809,14 @@ void RmcmcAL(double *y, int *nrowy, int *ncoly, double *repno,
 				{
 					prob[k-1]=exp(logprob[k-1])/sumprob;
 				}
-/*			for (k=1;k<=nchangedlabel[0];k++)
+			for (k=1;k<=nchangedlabel[0];k++)
 				{
 				printf("\n position %d can get %d with logprobability %d",randindex[j], k, (int)(logprob[k-1]) );
 				}
-*/			
+			
 			mysample=rmultinomial(logprob,nchangedlabel[0]);
-/*			printf("\nmysample for position %d is  %d had logprob %d \n",randindex[j], mysample, (int)logprob[(mysample-1)] );
-*/			
+			printf("\nmysample for position %d is  %d had logprob %d \n",randindex[j], mysample, (int)logprob[(mysample-1)] );
+			
 			label[randindex[j]-1]=mysample;
 			relabel(label,*nlabel ,helplabel);
 			for (k=0;k<*nrepno;k++)
@@ -2827,7 +2829,7 @@ void RmcmcAL(double *y, int *nrowy, int *ncoly, double *repno,
 		}
 	}
 
-
+*/
 
 
 
@@ -2838,21 +2840,10 @@ void RmcmcAL(double *y, int *nrowy, int *ncoly, double *repno,
 	
 	
 	
-	/*	printf("\n Label \n");
-	for (i=0;i<*nrepno;i++)
-		{
-		printf(" %d ",(int)label[i]);
-		}
-		printf("\n ReLabel \n");
-	for (i=0;i<*nrepno;i++)
-		{
-		printf(" %d ",(int)helplabel[i]);
-		}*/
-/*	printf( "\n");*/
 
 
 
-
+/*
 void Rrmultinomial (double *logprob,int *nlogprob,int *result)
 	{
 	int i;
@@ -2862,6 +2853,7 @@ void Rrmultinomial (double *logprob,int *nlogprob,int *result)
 		result[i]=rmultinomial(logprob,*nlogprob);
 		}
 	}
+*/
 	
 void Rrelabel( double *label, int *nlabel,double *result)
 {
