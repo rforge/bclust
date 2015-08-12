@@ -83,7 +83,7 @@ void Rcovmaker(double *sigma2, double *tau2eta, double *tau2theta, double *r, in
 void productmaker (double b[], int nb,double d[], double CholA[], double *bAinvb, double *bAinvd, double *dAinvd)
 {
 	char myL='L',myN='N';
-	int info=0, KD=nb, N=nb, LD=nb+1, LDB=nb, LDA=nb, one=1, i=0;
+	int info=0, N=nb, LDB=nb, LDA=nb, one=1, i=0;
 	double bstar[nb],dstar[nb],bb=0,dd=0,bd=0;
 
 for (i=0;i<nb;i++)
@@ -92,7 +92,7 @@ for (i=0;i<nb;i++)
 	dstar[i]=d[i];
 	}
 
-/*F77_CALL(dpbtrf)(&myL, &N, &KD , Chol, &LD,&info);/* Now Chol is Cholesky factor of A */
+/*F77_CALL(dpbtrf)(&myL, &N, &KD , Chol, &LD,&info); Now Chol is Cholesky factor of A */
 F77_CALL(dtrtrs)(&myL, &myN, &myN, &N, &one, CholA, &LDA,  bstar,&LDB, &info); /* Now bstar is inverse of Chol times b */
 F77_CALL(dtrtrs)(&myL, &myN, &myN, &N, &one, CholA, &LDA,  dstar,&LDB, &info); /* Now dstar is inverse of Chol times b */
 
@@ -528,7 +528,7 @@ void yreorder(double y[], int nrowy, int ncoly, double repno[], int nrepno, doub
 {
 	/* for noi=1 or noj=1 it won't work*/
 double repnosum[ntypeno],tresult[nrowy*ncoly], irowstart1=1,irowstart2=1;
-int i,j, startfill=0;
+int i, startfill=0;
 matsum (repno, nrepno, typeno, ntypeno, repnosum);
 
 for (i=0;i<(noi-1);i++)
@@ -647,31 +647,13 @@ void Rlogmarg0datavsAL (double *y, int *nrowy, int *ncoly, double *repno , int *
 logmarg0datavsAL (y, *nrowy, *ncoly, repno ,*nrepno, typeno, *ntypeno, theta,result);
 }
 
-/*
-void logmarg1dataG (double y[], int nrowy, int ncoly, double repno[] , int nrepno, double typeno[], int ntypeno, double theta[],double  *result)
-{
-double sigma2,tau2eta, tau2theta, mu, ybar[ntypeno*ncoly],css[ntypeno*ncoly], newrepno[ntypeno];
-sigma2=exp(theta[0]);
-tau2eta=exp(theta[1]);
-tau2theta=exp(theta[2]); 
-mu=theta[3];
-p=1/(1+exp(-theta[4])); they are useless
-matsum(repno, nrepno, typeno, ntypeno, newrepno) ;
-cssofmatrix (y, (nrowy*ncoly), newrepno, ntypeno, ybar, css);
-logmarg1tmG(sigma2, tau2eta, tau2theta, mu, ybar, css, (ntypeno*ncoly ) , newrepno , ntypeno, result);
-}
-
-
-/*void matsum (double X[],int nX, double N[], int nN, double *result)
-void covmaker(double sigma2, double tau2eta, double tau2theta, double r[], int nr, double *Cov)
-void dmvnorm(double X[], int nX, double Mu[], double Sigma[],double *logdensity)*/
 
 void logmarg1vectorG(double y[], int ny, double repno[] , 
 int nrepno, double typeno[], int ntypeno, double theta[],double  *result)
 {
 double sigma2,tau2eta, tau2theta, mu, logdensity[1], submean[ny],subcov[ny*ny],
-	subrepno[nrepno],rtsum[ntypeno],sumrtsum,sumtypeno=0,suby[ny];
-int t,v,i,counter=0;
+	subrepno[nrepno],rtsum[ntypeno],sumrtsum=0,sumtypeno=0,suby[ny];
+int t,i,counter=0;
 sigma2=exp(theta[0]);
 tau2eta=exp(theta[1]);
 tau2theta=exp(theta[2]); 
@@ -775,8 +757,8 @@ void logmarg1dataAL(double y[], int nrowy,int ncoly, double repno[] ,
 int nrepno, double typeno[], int ntypeno, double theta[],double  *result)
 {
 double logdetA,sigma2,tau2eta,logdensity[1], subrepno[nrepno],rtsum[ntypeno],sumrtsum=0,
-	sumtypeno=0,suby[nrowy],tresult[ntypeno*ncoly],sum,A[nrowy*nrowy];
-int t,m,i,counter=0,s;
+	sumtypeno=0,suby[nrowy],tresult[ntypeno*ncoly],A[nrowy*nrowy];
+int t,m,i,counter=0;
 sigma2=exp(theta[0]);
 tau2eta=exp(theta[1]);
 matsum(repno,nrepno,typeno,ntypeno,rtsum);
@@ -826,7 +808,7 @@ logmarg1dataG(y, *nrowy, *ncoly, repno , *nrepno, typeno, *ntypeno, theta,result
 
 void logmarg1datavsG (double y[], int nrowy, int ncoly, double repno[] , int nrepno, double typeno[], int ntypeno, double theta[],double  *result)
 {
-double sigma2,tau2eta, tau2theta, mu, ybar[ntypeno*ncoly],css[ntypeno*ncoly], newrepno[ntypeno],p,l1[ntypeno*ncoly],l0[ntypeno*ncoly] ;
+double  p,l1[ntypeno*ncoly],l0[ntypeno*ncoly] ;
 int i;
 p=1/(1+exp(-theta[4]));
 logmarg1dataG (y, nrowy, ncoly, repno , nrepno, typeno, ntypeno, theta,l1);
@@ -859,7 +841,7 @@ logmarg0datavsG (y, *nrowy, *ncoly, repno , *nrepno, typeno, *ntypeno, theta,res
 
 void logmarg1datavsAL (double y[], int nrowy, int ncoly, double repno[] , int nrepno, double typeno[], int ntypeno, double theta[],double  *result)
 {
-double sigma2,tau2eta, tau2thetaL,tau2thetaR, mu, ybar[ntypeno*ncoly],css[ntypeno*ncoly], newrepno[ntypeno],p,l1[ntypeno*ncoly],l0[ntypeno*ncoly] ;
+double sigma2,tau2eta, tau2thetaL,tau2thetaR, mu, p,l1[ntypeno*ncoly],l0[ntypeno*ncoly] ;
 int i;
 sigma2=exp(theta[0]);
 tau2eta=exp(theta[1]);
@@ -906,7 +888,7 @@ for (i=0; i<(ncoly*ntypeno); i++)
 
 void logmargdataG (double y[], int nrowy, int ncoly, double repno[] , int nrepno, double typeno[], int ntypeno, double theta[],double  *result)
 {
-double l0[ntypeno*ncoly], l1[ntypeno*ncoly],p, suml=0 ;
+double l0[ntypeno*ncoly], l1[ntypeno*ncoly],p;
 int i;
 p=1/(1+exp(-theta[4]));
 logmarg0dataG (y, nrowy, ncoly, repno , nrepno, typeno, ntypeno, theta, l0);
@@ -998,7 +980,7 @@ logmargdataG (y, *nrowy, *ncoly, repno, *nrepno, typeno, *ntypeno, theta, result
 
 void logmargdataAL (double y[], int nrowy, int ncoly, double repno[] , int nrepno, double typeno[], int ntypeno, double theta[],double  *result)
 {
-double l0[ntypeno*ncoly], l1[ntypeno*ncoly],p, suml=0 ;
+double l0[ntypeno*ncoly], l1[ntypeno*ncoly],p ;
 int i;
 p=1/(1+exp(-theta[5]));
 logmarg0dataAL (y, nrowy, ncoly, repno , nrepno, typeno, ntypeno, theta, l0);
@@ -1439,7 +1421,7 @@ matsum (repno, nrepno, typeno, ntypeno, repnosum);
 
 			int k, ijsize=(asint(repnosum[i-1]+repnosum[j-1])*ncoly);
 			double yij[ijsize ],combinedtypeno[]={1},combinedrepno[]={(repnosum[i-1]+repnosum[j-1])}, sumlij=0;
-			double sumlminusij=0,yminusij[ncoly*nrowy-ijsize],sumlijseparate=0, newsuml;
+			double sumlminusij=0,sumlijseparate=0, newsuml;
 			sumof2rows (l0, ntypeno,ncoly ,i,j,l0ij);
 			select2individofy ( y, nrowy, ncoly, repno, nrepno, typeno, ntypeno, i, j, yij);
 			logmarg1dataG (yij,asint(repnosum[i-1]+repnosum[j-1]) , ncoly, combinedrepno, 1, combinedtypeno, 1, theta, l1ij);
@@ -1515,7 +1497,7 @@ double typeno[], int ntypeno, double lvs0[], double sumlvs0[], double lvs1[], do
 double *minvalue, double  *minindex)
 	{
 int i=1,j=2; 
-double repnosum[ntypeno],l1ij[ncoly],l0ij[ncoly],p,lijseparate[2*ncoly],newtypeno[ntypeno],newldirich[1],q;
+double repnosum[ntypeno],l1ij[ncoly],l0ij[ncoly],p,newtypeno[ntypeno],newldirich[1],q;
 p=1/(1+exp(-theta[4]));
 q=1/(1+exp(-theta[5]));
 matsum (repno, nrepno, typeno, ntypeno, repnosum);
@@ -1627,7 +1609,7 @@ double typeno[], int ntypeno, double lvs0[], double sumlvs0[], double lvs1[], do
 double *minvalue, double  *minindex)
 	{
 int i=1,j=2; 
-double repnosum[ntypeno],l1ij[ncoly],l0ij[ncoly],p,lijseparate[2*ncoly],newtypeno[ntypeno],newldirich[1],q;
+double repnosum[ntypeno],l1ij[ncoly],l0ij[ncoly],p,newtypeno[ntypeno],newldirich[1],q;
 p=1/(1+exp(-theta[5]));
 q=1/(1+exp(-theta[6]));
 matsum (repno, nrepno, typeno, ntypeno, repnosum);
@@ -1746,7 +1728,7 @@ matsum (repno, nrepno, typeno, ntypeno, repnosum);
 
 			int k, ijsize=(asint(repnosum[i-1]+repnosum[j-1])*ncoly);
 			double yij[ijsize ],combinedtypeno[]={1},combinedrepno[]={(repnosum[i-1]+repnosum[j-1])}, sumlij=0;
-			double sumlminusij=0,yminusij[ncoly*nrowy-ijsize],sumlijseparate=0, newsuml;
+			double sumlminusij=0,sumlijseparate=0, newsuml;
 			sumof2rows (l0, ntypeno,ncoly ,i,j,l0ij);
 			select2individofy ( y, nrowy, ncoly, repno, nrepno, typeno, ntypeno, i, j, yij);
 			logmarg1dataAL (yij,asint(repnosum[i-1]+repnosum[j-1]) , ncoly, combinedrepno, 1, combinedtypeno, 1, theta, l1ij);
@@ -1780,7 +1762,6 @@ for (i=1; i<=ntypeno;i++)
 			combinedrepno[0]=(repnosum[i-1]+repnosum[j-1]);
 			sumlij=0;sumlminusij=0;sumlijseparate=0;
 			double yij[ijsize];
-			double yminusij[ncoly*nrowy-ijsize];
 			sumof2rows (l0, ntypeno,ncoly ,i,j,l0ij);
 			select2individofy ( y, nrowy, ncoly, repno, nrepno, typeno, ntypeno, i, j, yij);
 			logmarg1dataAL (yij,asint(repnosum[i-1]+repnosum[j-1]) , ncoly, combinedrepno, 1, combinedtypeno, 1, theta, l1ij);
@@ -2106,8 +2087,8 @@ void fastbclustvsG(double y[], int nrowy, int ncoly, double repno[], int nrepno,
 {
 double typeno[nrepno], typelabel[nrepno], yclust[ncoly*nrowy], 
 	repnoclust[nrepno], typenoclust[nrepno], minvalue[1], yresult[nrowy*ncoly],
-	repnoresult[nrepno],typenoresult[nrepno],minindex[2], sumlclust=0,
-	l0clust[nrepno*ncoly],l1clust[nrepno*ncoly],lclust[nrepno*ncoly],l0result[nrepno*ncoly],
+	repnoresult[nrepno],typenoresult[nrepno],minindex[2], 
+	l0clust[nrepno*ncoly],l1clust[nrepno*ncoly],l0result[nrepno*ncoly],
 	l1result[nrepno*ncoly], typelabelresult[nrepno],suml0clust[ncoly],suml1clust[ncoly];
 int i,j, nrepnoclust=nrepno, ntypenoclust=nrepno, ntypeno=nrepno;
 
@@ -2186,8 +2167,8 @@ void fastbclustvsAL(double y[], int nrowy, int ncoly, double repno[], int nrepno
 {
 double typeno[nrepno], typelabel[nrepno], yclust[ncoly*nrowy], 
 	repnoclust[nrepno], typenoclust[nrepno], minvalue[1], yresult[nrowy*ncoly],
-	repnoresult[nrepno],typenoresult[nrepno],minindex[2], sumlclust=0,
-	l0clust[nrepno*ncoly],l1clust[nrepno*ncoly],lclust[nrepno*ncoly],l0result[nrepno*ncoly],
+	repnoresult[nrepno],typenoresult[nrepno],minindex[2],
+	l0clust[nrepno*ncoly],l1clust[nrepno*ncoly],l0result[nrepno*ncoly],
 	l1result[nrepno*ncoly], typelabelresult[nrepno],suml0clust[ncoly],suml1clust[ncoly];
 int i,j, nrepnoclust=nrepno, ntypenoclust=nrepno, ntypeno=nrepno;
 
@@ -2506,7 +2487,7 @@ void loglikbylabelG(double y[], int nrowy, int ncoly, double repno[], int nrepno
 	double theta[], double *result)
 	{
 	double worklabel[nlabel],logdirich[1],resultnodirich[1];
-	int i,nhelpno,nhelptypeno[1];
+	int i,nhelptypeno[1];
 	for (i=0;i<nlabel;i++){worklabel[i]=label[i];}
 	double helpy[ncoly*nrowy], helprepno[nrepno], helptypeno[nrepno];
 	yarrangebylabel (y, nrowy, ncoly, repno, nrepno, worklabel, nlabel,helpy, helprepno, helptypeno, nhelptypeno);
@@ -2519,7 +2500,7 @@ void loglikbylabelvsG(double y[], int nrowy, int ncoly, double repno[], int nrep
 	double theta[], double *result)
 	{
 	double worklabel[nlabel],logdirich[1],resultnodirich[1];
-	int i,nhelpno,nhelptypeno[1];
+	int i,nhelptypeno[1];
 	for (i=0;i<nlabel;i++){worklabel[i]=label[i];}
 	double helpy[ncoly*nrowy], helprepno[nrepno], helptypeno[nrepno];
 	yarrangebylabel (y, nrowy, ncoly, repno, nrepno, worklabel, nlabel,helpy, helprepno, helptypeno, nhelptypeno);
@@ -2533,7 +2514,7 @@ void loglikbylabelAL(double y[], int nrowy, int ncoly, double repno[], int nrepn
 	double theta[], double *result)
 	{
 	double worklabel[nlabel],logdirich[1],resultnodirich[1];
-	int i,nhelpno,nhelptypeno[1];
+	int i,nhelptypeno[1];
 	for (i=0;i<nlabel;i++){worklabel[i]=label[i];}
 	double helpy[ncoly*nrowy], helprepno[nrepno], helptypeno[nrepno];
 	yarrangebylabel (y, nrowy, ncoly, repno, nrepno, worklabel, nlabel,helpy, helprepno, helptypeno, nhelptypeno);
@@ -2546,7 +2527,7 @@ void loglikbylabelvsAL(double y[], int nrowy, int ncoly, double repno[], int nre
 	double theta[], double *result)
 	{
 	double worklabel[nlabel],logdirich[1],resultnodirich[1];
-	int i,nhelpno,nhelptypeno[1];
+	int i,nhelptypeno[1];
 	for (i=0;i<nlabel;i++){worklabel[i]=label[i];}
 	double helpy[ncoly*nrowy], helprepno[nrepno], helptypeno[nrepno];
 	yarrangebylabel (y, nrowy, ncoly, repno, nrepno, worklabel, nlabel,helpy, helprepno, helptypeno, nhelptypeno);
@@ -2587,7 +2568,7 @@ void logprobabilitycalculatorG(double y[], int nrowy, int ncoly, double repno[],
 	double worklabel[nlabel];
 	int i;
 	for (i=0;i<nlabel;i++){worklabel[i]=label[i];}
-	int maxlab=asint(maxofvector(label,nlabel)),labelround,nhelpvec[1];
+	int maxlab=asint(maxofvector(label,nlabel)),nhelpvec[1];
 	double helpvec[nlabel];
 	double helpy[ncoly*nrowy], helprepno[nrepno], helptypeno[nrepno],singlelogprob[1], logdirich[1];
 	int nhelptypeno[1];
@@ -2618,7 +2599,7 @@ void logprobabilitycalculatorAL(double y[], int nrowy, int ncoly, double repno[]
 	double worklabel[nlabel];
 	int i;
 	for (i=0;i<nlabel;i++){worklabel[i]=label[i];}
-	int maxlab=asint(maxofvector(label,nlabel)),labelround,nhelpvec[1];
+	int maxlab=asint(maxofvector(label,nlabel)),nhelpvec[1];
 	double helpvec[nlabel];
 	double helpy[ncoly*nrowy], helprepno[nrepno], helptypeno[nrepno],singlelogprob[1], logdirich[1];
 	int nhelptypeno[1];
@@ -2640,7 +2621,7 @@ void logprobabilitycalculatorAL(double y[], int nrowy, int ncoly, double repno[]
 	}
 
 	
-
+/*
 void RlogprobabilitycalculatorG(double *y, int *nrowy, int *ncoly, double *repno, 
 	int *nrepno, double *label, int *nlabel, int *indexpos, double *theta, double *changedlabel, int *nchangedlabel, double *logprob)
 	{
@@ -2664,7 +2645,7 @@ void RlogprobabilitycalculatorG(double *y, int *nrowy, int *ncoly, double *repno
 	}
 
 	
-/*
+
 int rmultinomial (double logprob[], int nlogprob)
 	{
 		int rnd[nlogprob],i;
@@ -2865,8 +2846,8 @@ void Rrelabel( double *label, int *nlabel,double *result)
 void loglikbylabelGunif(double y[], int nrowy, int ncoly, double repno[], int nrepno, double label[], int nlabel,
 	double theta[], double *result)
 	{
-	double worklabel[nlabel],logdirich[1],resultnodirich[1];
-	int i,nhelpno,nhelptypeno[1];
+	double worklabel[nlabel],resultnodirich[1];
+	int i,nhelptypeno[1];
 	for (i=0;i<nlabel;i++){worklabel[i]=label[i];}
 	double helpy[ncoly*nrowy], helprepno[nrepno], helptypeno[nrepno];
 	yarrangebylabel (y, nrowy, ncoly, repno, nrepno, worklabel, nlabel,helpy, helprepno, helptypeno, nhelptypeno);
@@ -2884,8 +2865,8 @@ void RloglikbylabelGunif(double *y,int *nrowy,int *ncoly,double *repno,int *nrep
 void loglikbylabelALunif(double y[], int nrowy, int ncoly, double repno[], int nrepno, double label[], int nlabel,
 	double theta[], double *result)
 	{
-	double worklabel[nlabel],logdirich[1],resultnodirich[1];
-	int i,nhelpno,nhelptypeno[1];
+	double worklabel[nlabel],resultnodirich[1];
+	int i,nhelptypeno[1];
 	for (i=0;i<nlabel;i++){worklabel[i]=label[i];}
 	double helpy[ncoly*nrowy], helprepno[nrepno], helptypeno[nrepno];
 	yarrangebylabel (y, nrowy, ncoly, repno, nrepno, worklabel, nlabel,helpy, helprepno, helptypeno, nhelptypeno);
@@ -2905,8 +2886,8 @@ void RloglikbylabelALunif(double *y,int *nrowy,int *ncoly,double *repno,int *nre
 void loglikbylabelvsGunif(double y[], int nrowy, int ncoly, double repno[], int nrepno, double label[], int nlabel,
 	double theta[], double *result)
 	{
-	double worklabel[nlabel],logdirich[1],resultnodirich[1];
-	int i,nhelpno,nhelptypeno[1];
+	double worklabel[nlabel],resultnodirich[1];
+	int i,nhelptypeno[1];
 	for (i=0;i<nlabel;i++){worklabel[i]=label[i];}
 	double helpy[ncoly*nrowy], helprepno[nrepno], helptypeno[nrepno];
 	yarrangebylabel (y, nrowy, ncoly, repno, nrepno, worklabel, nlabel,helpy, helprepno, helptypeno, nhelptypeno);
@@ -2925,8 +2906,8 @@ void RloglikbylabelvsGunif(double *y,int *nrowy,int *ncoly,double *repno,int *nr
 void loglikbylabelvsALunif(double y[], int nrowy, int ncoly, double repno[], int nrepno, double label[], int nlabel,
 	double theta[], double *result)
 	{
-	double worklabel[nlabel],logdirich[1],resultnodirich[1];
-	int i,nhelpno,nhelptypeno[1];
+	double worklabel[nlabel],resultnodirich[1];
+	int i,nhelptypeno[1];
 	for (i=0;i<nlabel;i++){worklabel[i]=label[i];}
 	double helpy[ncoly*nrowy], helprepno[nrepno], helptypeno[nrepno];
 	yarrangebylabel (y, nrowy, ncoly, repno, nrepno, worklabel, nlabel,helpy, helprepno, helptypeno, nhelptypeno);

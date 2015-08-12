@@ -576,7 +576,7 @@ cutplot.dendrogramh = function(x, h, cluscol=NULL, leaflab= "none", horiz=TRUE, 
     }
     
     # Not nice, but necessary
-    pn  = stats:::plotNode
+    pn  = plotnode
     
     opar = par()[c("col","lwd")]
     on.exit(par(opar))
@@ -717,7 +717,7 @@ cutplot.dendrogramh = function(x, h, cluscol=NULL, leaflab= "none", horiz=TRUE, 
     }
     
     # Not nice, but necessary
-    pn  = stats:::plotNode
+    pn  = plotnode
     
     opar = par()[c("col","lwd")]
     on.exit(par(opar))

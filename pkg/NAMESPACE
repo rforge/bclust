@@ -1,6 +1,7 @@
 # Default NAMESPACE created by R
 # Remove the previous line if you edit this file
-
+# import some functions
+#importFrom(stats,plotNode)
 # Export all names
-exportPattern(".")
+export(ditplot, bclust, bdiscrim, profileplot, viplot, imp, dptplot, meancss, loglikelihood, teethplot)
 
