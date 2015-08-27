@@ -653,7 +653,7 @@ int nrepno, double typeno[], int ntypeno, double theta[],double  *result)
 {
 double sigma2,tau2eta, tau2theta, mu, logdensity[1], submean[ny],subcov[ny*ny],
 	subrepno[nrepno],rtsum[ntypeno],sumrtsum=0,sumtypeno=0,suby[ny];
-int t,i,counter=0;
+int t,i;
 sigma2=exp(theta[0]);
 tau2eta=exp(theta[1]);
 tau2theta=exp(theta[2]); 
@@ -661,7 +661,6 @@ mu=theta[3];
 matsum(repno,nrepno,typeno,ntypeno,rtsum);
 for (t=0;t<ntypeno;t++)
 	{
-	counter=0;
 	for (i=sumtypeno;i<(sumtypeno+typeno[t]);i++){subrepno[(int)(i-sumtypeno)]=repno[i];}
 	for (i=0;i<rtsum[t];i++){submean[i]=mu;}
 	covmaker(sigma2,tau2eta,tau2theta,subrepno,typeno[t],subcov);
@@ -841,13 +840,9 @@ logmarg0datavsG (y, *nrowy, *ncoly, repno , *nrepno, typeno, *ntypeno, theta,res
 
 void logmarg1datavsAL (double y[], int nrowy, int ncoly, double repno[] , int nrepno, double typeno[], int ntypeno, double theta[],double  *result)
 {
-double sigma2,tau2eta, tau2thetaL,tau2thetaR, mu, p,l1[ntypeno*ncoly],l0[ntypeno*ncoly] ;
+double p,l1[ntypeno*ncoly],l0[ntypeno*ncoly] ;
 int i;
-sigma2=exp(theta[0]);
-tau2eta=exp(theta[1]);
-tau2thetaL=exp(theta[2]); 
-tau2thetaR=exp(theta[3]); 
-mu=theta[4];
+
 p=1/(1+exp(-theta[5]));
 logmarg1dataAL (y, nrowy, ncoly, repno , nrepno, typeno, ntypeno, theta,l1);
 logmarg0datavsAL (y, nrowy, ncoly, repno , nrepno, typeno, ntypeno, theta,l0);
@@ -1294,7 +1289,7 @@ int i,j, nrepnoclust=nrepno, ntypenoclust=nrepno, ntypeno=nrepno ;
 /*initialization*/
 for 	(i=0; i<nrepno;i++)
 	{
-		typeno[i]=1;
+
 		typelabel[i]=-(i+1);
 		repnoclust[i]=repno[i];
 		typenoclust [i]=1;
@@ -1336,7 +1331,7 @@ int i,j, nrepnoclust=nrepno, ntypenoclust=nrepno, ntypeno=nrepno ;
 /*initialization*/
 for 	(i=0; i<nrepno;i++)
 	{
-		typeno[i]=1;
+
 		typelabel[i]=-(i+1);
 		repnoclust[i]=repno[i];
 		typenoclust [i]=1;
@@ -1421,7 +1416,7 @@ matsum (repno, nrepno, typeno, ntypeno, repnosum);
 
 			int k, ijsize=(asint(repnosum[i-1]+repnosum[j-1])*ncoly);
 			double yij[ijsize ],combinedtypeno[]={1},combinedrepno[]={(repnosum[i-1]+repnosum[j-1])}, sumlij=0;
-			double sumlminusij=0,sumlijseparate=0, newsuml;
+			double sumlijseparate=0, newsuml;
 			sumof2rows (l0, ntypeno,ncoly ,i,j,l0ij);
 			select2individofy ( y, nrowy, ncoly, repno, nrepno, typeno, ntypeno, i, j, yij);
 			logmarg1dataG (yij,asint(repnosum[i-1]+repnosum[j-1]) , ncoly, combinedrepno, 1, combinedtypeno, 1, theta, l1ij);
@@ -1453,7 +1448,7 @@ for (i=1; i<=ntypeno;i++)
 			R_CheckUserInterrupt();
 			ijsize=(asint(repnosum[i-1]+repnosum[j-1])*ncoly);
 			combinedrepno[0]=(repnosum[i-1]+repnosum[j-1]);
-			sumlij=0;sumlminusij=0;sumlijseparate=0;
+			sumlij=0;sumlijseparate=0;
 			double yij[ijsize];
 /*			double yminusij[ncoly*nrowy-ijsize];*/
 			sumof2rows (l0, ntypeno,ncoly ,i,j,l0ij);
@@ -1728,7 +1723,7 @@ matsum (repno, nrepno, typeno, ntypeno, repnosum);
 
 			int k, ijsize=(asint(repnosum[i-1]+repnosum[j-1])*ncoly);
 			double yij[ijsize ],combinedtypeno[]={1},combinedrepno[]={(repnosum[i-1]+repnosum[j-1])}, sumlij=0;
-			double sumlminusij=0,sumlijseparate=0, newsuml;
+			double sumlijseparate=0, newsuml;
 			sumof2rows (l0, ntypeno,ncoly ,i,j,l0ij);
 			select2individofy ( y, nrowy, ncoly, repno, nrepno, typeno, ntypeno, i, j, yij);
 			logmarg1dataAL (yij,asint(repnosum[i-1]+repnosum[j-1]) , ncoly, combinedrepno, 1, combinedtypeno, 1, theta, l1ij);
@@ -1760,7 +1755,7 @@ for (i=1; i<=ntypeno;i++)
 			R_CheckUserInterrupt();
 			ijsize=(asint(repnosum[i-1]+repnosum[j-1])*ncoly);
 			combinedrepno[0]=(repnosum[i-1]+repnosum[j-1]);
-			sumlij=0;sumlminusij=0;sumlijseparate=0;
+			sumlij=0;sumlijseparate=0;
 			double yij[ijsize];
 			sumof2rows (l0, ntypeno,ncoly ,i,j,l0ij);
 			select2individofy ( y, nrowy, ncoly, repno, nrepno, typeno, ntypeno, i, j, yij);
@@ -1980,7 +1975,7 @@ void Rl1arrangeG(double *l1,int *nrowl1, int *ncoll1,
 void fastbclustG(double y[], int nrowy, int ncoly, double repno[], int nrepno, double theta[],double  *merge,double *height)
 {
 
-double typeno[nrepno], typelabel[nrepno], yclust[ncoly*nrowy], 
+double typelabel[nrepno], yclust[ncoly*nrowy], 
 	repnoclust[nrepno], typenoclust[nrepno], minvalue[1], yresult[nrowy*ncoly],
 	repnoresult[nrepno],typenoresult[nrepno],minindex[2], sumlclust=0,
 	l0clust[nrepno*ncoly],l1clust[nrepno*ncoly],lclust[nrepno*ncoly],l0result[nrepno*ncoly],
@@ -1990,7 +1985,7 @@ int i,j, nrepnoclust=nrepno, ntypenoclust=nrepno, ntypeno=nrepno;
 /*initialization*/
 for 	(i=0; i<nrepno;i++)
 	{
-		typeno[i]=1;
+
 		typelabel[i]=-(i+1);
 		repnoclust[i]=repno[i];
 		typenoclust [i]=1;
@@ -2085,7 +2080,7 @@ for (i=1;i<ntypeno;i++)
 
 void fastbclustvsG(double y[], int nrowy, int ncoly, double repno[], int nrepno, double theta[],double  *merge,double *height)
 {
-double typeno[nrepno], typelabel[nrepno], yclust[ncoly*nrowy], 
+double typelabel[nrepno], yclust[ncoly*nrowy], 
 	repnoclust[nrepno], typenoclust[nrepno], minvalue[1], yresult[nrowy*ncoly],
 	repnoresult[nrepno],typenoresult[nrepno],minindex[2], 
 	l0clust[nrepno*ncoly],l1clust[nrepno*ncoly],l0result[nrepno*ncoly],
@@ -2094,7 +2089,7 @@ int i,j, nrepnoclust=nrepno, ntypenoclust=nrepno, ntypeno=nrepno;
 
 for 	(i=0; i<nrepno;i++)
 	{
-		typeno[i]=1;
+
 		typelabel[i]=-(i+1);
 		repnoclust[i]=repno[i];
 		typenoclust [i]=1;
@@ -2165,7 +2160,7 @@ for (i=1;i<ntypeno;i++)
 
 void fastbclustvsAL(double y[], int nrowy, int ncoly, double repno[], int nrepno, double theta[],double  *merge,double *height)
 {
-double typeno[nrepno], typelabel[nrepno], yclust[ncoly*nrowy], 
+double  typelabel[nrepno], yclust[ncoly*nrowy], 
 	repnoclust[nrepno], typenoclust[nrepno], minvalue[1], yresult[nrowy*ncoly],
 	repnoresult[nrepno],typenoresult[nrepno],minindex[2],
 	l0clust[nrepno*ncoly],l1clust[nrepno*ncoly],l0result[nrepno*ncoly],
@@ -2174,7 +2169,7 @@ int i,j, nrepnoclust=nrepno, ntypenoclust=nrepno, ntypeno=nrepno;
 
 for 	(i=0; i<nrepno;i++)
 	{
-		typeno[i]=1;
+
 		typelabel[i]=-(i+1);
 		repnoclust[i]=repno[i];
 		typenoclust [i]=1;
@@ -2270,7 +2265,7 @@ void fastbclustAL(double y[], int nrowy, int ncoly, double repno[], int nrepno, 
 /*	double *typeno = (double *) R_alloc(nrepno * sizeof(double));*/
 	
 	
-double typeno[nrepno], typelabel[nrepno], yclust[ncoly*nrowy], 
+double typelabel[nrepno], yclust[ncoly*nrowy], 
 	repnoclust[nrepno], typenoclust[nrepno], minvalue[1], yresult[nrowy*ncoly],
 	repnoresult[nrepno],typenoresult[nrepno],minindex[2], sumlclust=0,
 	l0clust[nrepno*ncoly],l1clust[nrepno*ncoly],lclust[nrepno*ncoly],l0result[nrepno*ncoly],
@@ -2280,7 +2275,7 @@ int i,j, nrepnoclust=nrepno, ntypenoclust=nrepno, ntypeno=nrepno;
 /*initialization*/
 for 	(i=0; i<nrepno;i++)
 	{
-		typeno[i]=1;
+
 		typelabel[i]=-(i+1);
 		repnoclust[i]=repno[i];
 		typenoclust [i]=1;
